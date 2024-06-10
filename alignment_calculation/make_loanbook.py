@@ -56,7 +56,11 @@ class loanbookMaker:
         pacta_files = []
         if pacta_file_location is None:
             if settings is None:
-                pacta_file_names = alignmentCalculatorConfig().load_settings()["main_pacta_file"].values()
+                pacta_file_names = (
+                    alignmentCalculatorConfig()
+                    .load_settings()["main_pacta_file"]
+                    .values()
+                )
             else:
                 pacta_file_names = settings["main_pacta_file"].values()
             for pacta_file in pacta_file_names:
@@ -109,7 +113,7 @@ class loanbookMaker:
             Default = None.
 
         match_data: str, optional
-            The location of the matched data file, containing the ids of the 
+            The location of the matched data file, containing the ids of the
             PACTA companies (company_id) and the counterpaty ids (counterparty_id)
             in a csv format.
             Default = None.
@@ -164,7 +168,10 @@ class loanbookMaker:
 
         if match_data is None:
             loan_counterparties = _load_loan_counterparties(
-                year=loan_year, month=month, start_month=start_month, start_year=start_year
+                year=loan_year,
+                month=month,
+                start_month=start_month,
+                start_year=start_year,
             )
 
             pacta_data = self._match_data(loan_counterparties)
@@ -350,7 +357,7 @@ class loanbookMaker:
 
     def _postprocess_join(self, combined: pd.DataFrame) -> pd.DataFrame:
         """
-        Postprocess the data after the PACTA data has been joined with the 
+        Postprocess the data after the PACTA data has been joined with the
         counterparty id data.
 
         Parameters:
@@ -365,7 +372,7 @@ class loanbookMaker:
             The dataset, without duplicates and with the columns name_company,
             company_country, company_lei, parent_name, parent_lei add if they did not exist
         """
-        
+
         group_columns = [
             "company_name",
             "name_company",
@@ -380,16 +387,14 @@ class loanbookMaker:
 
         for column in group_columns:
             if column not in combined.columns:
-                combined[column] = ''
+                combined[column] = ""
         combined = combined.groupby(["counterparty_id", "company_id"], as_index=False)[
             group_columns
         ].first()
 
         return combined
 
-
-    def _simple_join(self,
-                     matching_ids: pd.DataFrame) -> pd.DataFrame:
+    def _simple_join(self, matching_ids: pd.DataFrame) -> pd.DataFrame:
         """
         Join a matching table to the PACTA data
 
@@ -407,14 +412,14 @@ class loanbookMaker:
             company_country, company_lei, parent_name, parent_lei columns if they did not exist
         """
 
-        combined = self._pacta.merge(matching_ids, how='inner', left_on=['company_id'], right_on=['company_id'])
+        combined = self._pacta.merge(
+            matching_ids, how="inner", left_on=["company_id"], right_on=["company_id"]
+        )
         combined = self._postprocess_join(combined)
 
         return combined
 
-
-    def _post_processed(
-        self, combined: pd.DataFrame) -> pd.DataFrame:
+    def _post_processed(self, combined: pd.DataFrame) -> pd.DataFrame:
         """
         Postprocesses the combined loanbook.
 

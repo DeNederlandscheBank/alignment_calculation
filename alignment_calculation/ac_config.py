@@ -2,7 +2,8 @@ from typing import Union
 import ruamel.yaml
 import os
 
-class alignmentCalculatorConfig():
+
+class alignmentCalculatorConfig:
 
     def __init__(self):
         pass
@@ -106,7 +107,6 @@ class alignmentCalculatorConfig():
         else:
             return new_settings
 
-
     def _adjust_path(self, relative_path: str) -> str:
         """Adjust a relative path to an absolute path.
 
@@ -137,10 +137,8 @@ class alignmentCalculatorConfig():
 
         return absolute_path
 
-
     def _replace_in_nested_dict(
-        self,
-        dict_data: Union[dict, str, list]
+        self, dict_data: Union[dict, str, list]
     ) -> Union[dict, str, list]:
         """Recursively replace relative paths with absolute paths in a nested dictionary.
 
@@ -174,11 +172,9 @@ class alignmentCalculatorConfig():
         else:
             return dict_data
 
-
     def _load_and_check_setting(
-            self,
-            setting: str, 
-            old_settings: dict) -> Union[dict, str]:
+        self, setting: str, old_settings: dict
+    ) -> Union[dict, str]:
         """Load and retrieve a specific setting from existing settings.
 
         This function checks if a specified setting exists in the provided
@@ -211,18 +207,13 @@ class alignmentCalculatorConfig():
         else:
             return self.load_settings(original_settings=True)[setting]
 
-
-    def reset_settings(
-            self) -> None:
+    def reset_settings(self) -> None:
         """Resets the settings to the original parameters file and overwrite
         the user settings.
         """
         self._save_settings(self.load_settings(original_settings=True))
 
-
-    def _save_settings(
-            self,
-            new_settings: dict) -> None:
+    def _save_settings(self, new_settings: dict) -> None:
         """Save the updated settings to a YAML file.
 
         This function writes the provided `new_settings` dictionary to a YAML file
@@ -241,16 +232,15 @@ class alignmentCalculatorConfig():
         if not os.path.exists(os.path.join(os.path.expanduser("~"), ".pacta")):
             os.mkdir(os.path.join(os.path.expanduser("~"), ".pacta"))
 
-        parameter_file = os.path.join(os.path.expanduser("~"), ".pacta", "parameters.yaml")
+        parameter_file = os.path.join(
+            os.path.expanduser("~"), ".pacta", "parameters.yaml"
+        )
         yaml = ruamel.yaml.YAML()
 
         with open(parameter_file, "w+") as parameters:
             yaml.dump(new_settings, parameters)
 
-
-    def load_settings(
-            self,
-            original_settings: bool = False) -> dict:
+    def load_settings(self, original_settings: bool = False) -> dict:
         """Loads the settings from the user directory, if the settings do not exist in this
         directory the original parameters are loaded.
 

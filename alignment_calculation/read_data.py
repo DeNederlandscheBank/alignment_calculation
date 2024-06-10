@@ -2,6 +2,7 @@ from typing import Union
 import pandas as pd
 import os
 
+
 def _load_loan_data(
     pacta_data: pd.DataFrame,
     year: int,
@@ -11,7 +12,7 @@ def _load_loan_data(
     start_year: int,
     frequency: str,
     additional_columns: list,
-    data_file: str = '../data/loan_data/loan_data.csv'
+    data_file: str = "../data/loan_data/loan_data.csv",
 ) -> pd.DataFrame:
     """
     Load loan data based on the counterparty_id for the combined PACTA data.
@@ -33,7 +34,7 @@ def _load_loan_data(
     frequency : str
         The frequency for which the data should be loaded.
     additional_columns : list
-        Additional columns to include in loan data.        
+        Additional columns to include in loan data.
     data_file: str
         The data file containing the counterparty data
         default='../data/loan_data/loan_data.csv'
@@ -55,25 +56,27 @@ def _load_loan_data(
         start_month = month
 
     df = pd.read_csv(absolute_path)
-    df['loan_id'] = df['loan_id'].astype(str)
+    df["loan_id"] = df["loan_id"].astype(str)
 
-    df = df.loc[df['counterparty_id'].isin(pacta_data['counterparty_id'])]
+    df = df.loc[df["counterparty_id"].isin(pacta_data["counterparty_id"])]
 
     if single_period:
-        df = df.loc[df['portfolio_date'].astype(str).str.contains(str(start_year))]
-        df = df.loc[df['portfolio_date'].astype(str).str.contains(str(start_month))]
+        df = df.loc[df["portfolio_date"].astype(str).str.contains(str(start_year))]
+        df = df.loc[df["portfolio_date"].astype(str).str.contains(str(start_month))]
 
     if isinstance(portfolio_codes, str):
-        df = df.loc[df['portfolio_code'].isin(portfolio_codes)]
+        df = df.loc[df["portfolio_code"].isin(portfolio_codes)]
 
     return df
-    
 
 
 def _load_loan_counterparties(
-    year: int, month: int, start_year: int, start_month: int, 
-    include_external: bool = True, 
-    data_file: str = '../data/loan_data/loan_companies.csv'
+    year: int,
+    month: int,
+    start_year: int,
+    start_month: int,
+    include_external: bool = True,
+    data_file: str = "../data/loan_data/loan_companies.csv",
 ) -> pd.DataFrame:
     """
     Reads the counterparties from a counterparty file
@@ -88,12 +91,12 @@ def _load_loan_counterparties(
     -------
     pandas.DataFrame
         The counterparty data from the file
-    """    
+    """
     absolute_path = data_file.replace("..", os.path.dirname(__file__))
     absolute_path = os.path.normpath(absolute_path)
 
-
     return pd.read_csv(absolute_path)
+
 
 def _add_external_data(data: pd.DataFrame, columns: dict):
     """
@@ -114,7 +117,6 @@ def _add_external_data(data: pd.DataFrame, columns: dict):
     pandas.DataFrame
         The data files with the additional external data
     """
-
 
     for key, value in columns.items():
         data[key] = value

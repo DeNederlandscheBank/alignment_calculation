@@ -144,7 +144,6 @@ class alignmentCalculator:
                 self._pacta_company_indicators[year] = pacta_data["company_indicators"]
                 self._pacta_ownership[year] = pacta_data["company_ownership"]
 
-
             if isinstance(loan_file, str):
                 self._loans = _load_loanbook_data(loan_file)
             elif isinstance(loan_file, pd.DataFrame):
@@ -524,12 +523,12 @@ class alignmentCalculator:
             results_data = self._add_company_names(results_data)
         if company_domicile:
             results_data = self._add_company_domicile(results_data)
+        if plant_locations:
+            results_data = self._add_production_location(results_data, loan_indicator)
         if production_values:
             results_data = self._add_production(results_data)
         if target_values:
             results_data = self._add_target(results_data)
-        if plant_locations:
-            results_data = self._add_production_location(results_data, loan_indicator)
 
         return results_data
 
@@ -737,9 +736,12 @@ class alignmentCalculator:
         1           2      ES
         2           3      IT
         """
-        df = pd.read_csv(self._settings['company_information_file'])
+        df = pd.read_csv(self._settings["company_information_file"])
         results_data = results_data.merge(
-            df, how="left", left_on="company_id", right_on="company_id"
+            df[["company_id", "domicile"]],
+            how="left",
+            left_on="company_id",
+            right_on="company_id",
         )
 
         return results_data
@@ -801,7 +803,7 @@ class alignmentCalculator:
                 data_plus_production = sector_data[
                     sector_data["portfolio_date"].astype(str).str.contains(str(year))
                 ].merge(
-                    production,
+                    production_sector,
                     how="left",
                     left_on=["company_id", "sector", "year"] + include_technology,
                     right_on=["company_id", "sector", "year"] + include_technology,
@@ -820,7 +822,7 @@ class alignmentCalculator:
                 )
                 data_combined.append(
                     data_plus_production.merge(
-                        production_company_technology,
+                        production_company_technology, 
                         how="left",
                         left_on=["company_id", "sector", "year", self._portfolio_id]
                         + include_technology,
@@ -837,7 +839,11 @@ class alignmentCalculator:
             data_plus_production[loan_indicator] = (
                 data_plus_production[loan_indicator] * data_plus_production["ratio"]
             )
-            data.append(data_plus_production.drop(columns=["ratio"]))
+            data.append(
+                data_plus_production.drop(
+                    columns=["ratio", "production", "production_total"]
+                )
+            )
 
         return pd.concat(data)
 
@@ -981,9 +987,7 @@ class alignmentCalculator:
 
         return region_mapping
 
-    def _add_region(
-        self, year: int, region_mapping: dict = None
-    ) -> None:
+    def _add_region(self, year: int, region_mapping: dict = None) -> None:
         """
         Add region information to company indicators for a specific year.
 
@@ -2443,7 +2447,7 @@ class alignmentCalculator:
             DataFrame containing parent companies with their corresponding parent_company_id s.
         """
         df_structure = self._pacta_ownership[year].copy()
-        
+
         if stop_at_weak_parents:
             df_structure = df_structure[df_structure["is_parent"]]
         else:
