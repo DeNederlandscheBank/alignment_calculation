@@ -1,0 +1,16 @@
+company_id,company_name,ownership_level,parent_company_id,parent_company_name,is_parent,is_ultimate_parent,is_ultimate_listed_parent
+88,Irish power,0,88,Irish power,TRUE,TRUE,TRUE
+110,Cement India Corp.,0,110,Cement India Corp.,TRUE,TRUE,FALSE
+118,Truck & Co.,0,118,Truck & Co.,FALSE,FALSE,FALSE
+118,Truck & Co.,1,4793,Car & Truck holding,TRUE,TRUE,FALSE
+782,Meditaranian holding,0,782,Meditaranian holding,TRUE,TRUE,FALSE
+2207,Uruguay power,0,2207,Uruguay power,TRUE,TRUE,FALSE
+4793,Car & Truck holding,0,4793,Car & Truck holding,TRUE,TRUE,FALSE
+6230,Oil & sons,0,6230,Oil & sons,TRUE,TRUE,TRUE
+6520,Wind Kenya,0,6520,Wind Kenya,TRUE,TRUE,TRUE
+7710,Belgium power,0,7710,Belgium power,TRUE,TRUE,FALSE
+9821,Car & Co,0,9821,Car & Co,FALSE,FALSE,FALSE
+9821,Car & Co,1,4793,Car & Truck holding,TRUE,TRUE,FALSE
+34522,Cement Ltd,0,34522,Cement Ltd,TRUE,TRUE,FALSE
+66203,German micro solar Gmbh,0,66203,German micro solar Gmbh,TRUE,TRUE,TRUE
+88047,New oil ventures,0,88047,New oil ventures,TRUE,TRUE,FALSE

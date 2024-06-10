@@ -8,7 +8,7 @@ from .load_pacta_data import (
     _load_region_data,
 )
 from .make_loanbook import loanbookMaker
-from .ac_config import AlignmentCalculatorConfig
+from .ac_config import alignmentCalculatorConfig
 
 
 class alignmentCalculator:
@@ -121,7 +121,7 @@ class alignmentCalculator:
     ) -> None:
 
         self._portfolio_id = portfolio_id
-        self._settings = AlignmentCalculatorConfig().load_settings()
+        self._settings = alignmentCalculatorConfig().load_settings()
         if custom_settings is not None:
             self.update_settings(custom_settings)
 
@@ -342,7 +342,7 @@ class alignmentCalculator:
                     + "docstring for all valid options"
                 )
 
-        new_settings = AlignmentCalculatorConfig().config(
+        new_settings = alignmentCalculatorConfig().config(
             main_pacta_file=main_pacta_file,
             company_information_file=company_information_file,
             economic_weights=economic_weights,
@@ -353,7 +353,7 @@ class alignmentCalculator:
         )
 
         if new_settings is None:
-            self._settings = AlignmentCalculatorConfig().load_settings()
+            self._settings = alignmentCalculatorConfig().load_settings()
         else:
             self._settings = new_settings
 
@@ -737,12 +737,7 @@ class alignmentCalculator:
         1           2      ES
         2           3      IT
         """
-        df = pd.read_csv(
-            r"D:\pacta\data\2024-02-14_AI_2023Q4_ECB-Company-Information.csv"
-        )
-        df = df[["Company ID", "Country of Domicile"]].rename(
-            columns={"Company ID": "company_id", "Country of Domicile": "domicile"}
-        )
+        df = pd.read_csv(self._settings['company_information_file'])
         results_data = results_data.merge(
             df, how="left", left_on="company_id", right_on="company_id"
         )
@@ -1507,7 +1502,7 @@ class alignmentCalculator:
         """
         df_total = self._pacta_company_indicators[year].copy()
         companies = self._get_parent_companies(False, year)
-        parents = companies["Parent Company ID"].unique().tolist()
+        parents = companies["parent_company_id"].unique().tolist()
         df_total = df_total[df_total["company_id"].isin(parents)]
         df_total = df_total.groupby("sector")[["production"]].sum()
         df_combined = df_combined.merge(
@@ -1662,7 +1657,7 @@ class alignmentCalculator:
             economic_weights = self._settings["economic_weights"]
         df_total = self._pacta_company_indicators[year].copy()
         companies = self._get_parent_companies(False, year)
-        parents = companies["Parent Company ID"].unique().tolist()
+        parents = companies["parent_company_id"].unique().tolist()
         df_total = df_total[df_total["company_id"].isin(parents)]
         df_total = df_total.groupby("sector", as_index=False)[["production"]].sum()
         for sector, weight in economic_weights.items():
@@ -2445,31 +2440,32 @@ class alignmentCalculator:
         Returns:
         --------
         pd.DataFrame
-            DataFrame containing parent companies with their corresponding Parent Company IDs.
+            DataFrame containing parent companies with their corresponding parent_company_id s.
         """
         df_structure = self._pacta_ownership[year].copy()
+        
         if stop_at_weak_parents:
-            df_structure = df_structure[df_structure["Is Parent"]]
+            df_structure = df_structure[df_structure["is_parent"]]
         else:
             df_structure = df_structure[
-                (df_structure["Is Parent"])
+                (df_structure["is_parent"])
                 & (
-                    df_structure["Is Ultimate Listed Parent"]
-                    | df_structure["Is Ultimate Parent"]
+                    df_structure["is_ultimate_listed_parent"]
+                    | df_structure["is_ultimate_parent"]
                 )
             ]
         df_structure = df_structure.sort_values(
-            by="Ownership Level", ascending=lowest_level
+            by="ownership_level", ascending=lowest_level
         )
         parents = pd.DataFrame(
-            df_structure.groupby("Company ID")["Parent Company ID"].first()
+            df_structure.groupby("company_id")["parent_company_id"].first()
         )
 
         df_structure = self._pacta_ownership[year].copy()
         others = df_structure[
-            ~df_structure["Company ID"].isin(parents.index)
-        ].sort_values(by="Ownership Level", ascending=False)
-        others = pd.DataFrame(others.groupby("Company ID")["Parent Company ID"].first())
+            ~df_structure["company_id"].isin(parents.index)
+        ].sort_values(by="ownership_level", ascending=False)
+        others = pd.DataFrame(others.groupby("company_id")["parent_company_id"].first())
 
         return pd.concat([parents, others])
 
@@ -2521,7 +2517,7 @@ class alignmentCalculator:
         # Set the company ids to the parent company ids
         loans = loans[loans["company_id"].isin(parents.index)].copy()
         loans["company_id"] = parents.loc[
-            loans["company_id"], "Parent Company ID"
+            loans["company_id"], "parent_company_id"
         ].values
         agg_function = {
             **{loan_indicator: "sum"},
@@ -2560,7 +2556,7 @@ class alignmentCalculator:
         pacta = self._pacta_company_indicators[year].copy()
         pacta = pacta[
             pacta["company_id"].isin(
-                self._get_parent_companies(False, year)["Parent Company ID"]
+                self._get_parent_companies(False, year)["parent_company_id"]
             )
         ]
         pacta = pacta.groupby(["company_id", "sector"], as_index=False)[

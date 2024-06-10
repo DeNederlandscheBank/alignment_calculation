@@ -2,7 +2,7 @@ from typing import Union
 import ruamel.yaml
 import os
 
-class AlignmentCalculatorConfig():
+class alignmentCalculatorConfig():
 
     def __init__(self):
         pass

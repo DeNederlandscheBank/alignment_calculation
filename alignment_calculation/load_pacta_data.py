@@ -1,6 +1,6 @@
 import pandas as pd
 from typing import Union
-from .ac_config import AlignmentCalculatorConfig
+from .ac_config import alignmentCalculatorConfig
 
 def _load_scenario_data(scenario_data: dict, allow_mismatches: bool = True):
     """
@@ -227,7 +227,7 @@ def _load_main_pacta_data(
         dataframes.
     """
     if settings is None:
-        settings = AlignmentCalculatorConfig().load_settings()
+        settings = alignmentCalculatorConfig().load_settings()
 
     if isinstance(main_pacta_file, str):
         with pd.ExcelFile(main_pacta_file, engine='openpyxl') as xls:

@@ -4,7 +4,7 @@ from unicodedata import normalize as unicode_norm
 from .load_pacta_data import _load_main_pacta_data
 from .read_data import _load_loan_counterparties, _load_loan_data, _add_external_data
 
-from .ac_config import AlignmentCalculatorConfig
+from .ac_config import alignmentCalculatorConfig
 
 
 class loanbookMaker:
@@ -56,7 +56,7 @@ class loanbookMaker:
         pacta_files = []
         if pacta_file_location is None:
             if settings is None:
-                pacta_file_names = AlignmentCalculatorConfig().load_settings()["main_pacta_file"].values()
+                pacta_file_names = alignmentCalculatorConfig().load_settings()["main_pacta_file"].values()
             else:
                 pacta_file_names = settings["main_pacta_file"].values()
             for pacta_file in pacta_file_names:

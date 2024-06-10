@@ -1,0 +1,750 @@
+company_id,name_company,lei,sector,technology,plant_location,year,production,production_unit,emission_factor,emission_factor_unit
+34522,Cement Ltd,SD9SDYF9Y749939YFS9,cement,integrated facility,HR,2022,4367500,t cement,0.84372406,tCO2e/t cement
+34522,Cement Ltd,SD9SDYF9Y749939YFS9,cement,integrated facility,HR,2023,4367500,t cement,0.84372406,tCO2e/t cement
+34522,Cement Ltd,SD9SDYF9Y749939YFS9,cement,integrated facility,HR,2024,4367500,t cement,0.84372406,tCO2e/t cement
+34522,Cement Ltd,SD9SDYF9Y749939YFS9,cement,integrated facility,HR,2025,4367500,t cement,0.84372406,tCO2e/t cement
+34522,Cement Ltd,SD9SDYF9Y749939YFS9,cement,integrated facility,HR,2026,4367500,t cement,0.84372406,tCO2e/t cement
+34522,Cement Ltd,SD9SDYF9Y749939YFS9,cement,integrated facility,HR,2027,4367500,t cement,0.84372406,tCO2e/t cement
+34522,Cement Ltd,SD9SDYF9Y749939YFS9,cement,integrated facility,HR,2028,4367500,t cement,0.84372406,tCO2e/t cement
+110,Cement India Corp.,3570734050H0WF003H,cement,integrated facility,IN,2022,263050,t cement,0.529162663,tCO2e/t cement
+110,Cement India Corp.,3570734050H0WF003H,cement,integrated facility,IN,2023,263050,t cement,0.529162663,tCO2e/t cement
+110,Cement India Corp.,3570734050H0WF003H,cement,integrated facility,IN,2024,263050,t cement,0.529162663,tCO2e/t cement
+110,Cement India Corp.,3570734050H0WF003H,cement,integrated facility,IN,2025,263050,t cement,0.529162663,tCO2e/t cement
+110,Cement India Corp.,3570734050H0WF003H,cement,integrated facility,IN,2026,263050,t cement,0.529162663,tCO2e/t cement
+110,Cement India Corp.,3570734050H0WF003H,cement,integrated facility,IN,2027,263050,t cement,0.529162663,tCO2e/t cement
+110,Cement India Corp.,3570734050H0WF003H,cement,integrated facility,IN,2028,263050,t cement,0.529162663,tCO2e/t cement
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,CL,2022,1331237,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,CL,2023,1300885,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,CL,2024,1210817,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,CL,2025,1207572,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,CL,2026,1207572,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,CL,2027,1191614,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,CL,2028,1160807,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,BO,2022,1607094,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,BO,2023,1184440,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,BO,2024,915684,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,BO,2025,365114,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,BO,2026,365114,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,BO,2027,323390,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,BO,2028,281327,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,PY,2022,31776677,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,PY,2023,32841056,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,PY,2024,32284593,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,PY,2025,33389456,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,PY,2026,33389456,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,PY,2027,34007809,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,PY,2028,35031568,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,US,2022,186285,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,US,2023,161959,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,US,2024,164495,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,US,2025,170131,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,US,2026,176574,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,US,2027,182657,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,gas,US,2028,186289,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,CL,2022,25990,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,CL,2023,24588,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,CL,2024,23555,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,CL,2025,22204,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,CL,2026,21061,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,CL,2027,19202,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,CL,2028,17865,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,BO,2022,263868,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,BO,2023,206977,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,BO,2024,181319,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,BO,2025,132088,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,BO,2026,119273,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,BO,2027,114451,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,BO,2028,108218,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,PY,2022,314112504,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,PY,2023,328539234,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,PY,2024,342248780,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,PY,2025,350042397,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,PY,2026,380722261,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,PY,2027,395065467,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,PY,2028,418249208,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,US,2022,934632,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,US,2023,783565,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,US,2024,819520,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,US,2025,853770,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,US,2026,872854,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,US,2027,913425,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,oil and gas,oil,US,2028,956321,GJ,,tCO2e/GJ
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,coalcap,PY,2022,17,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,coalcap,PY,2023,17,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,coalcap,PY,2024,17,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,coalcap,PY,2025,17,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,coalcap,PY,2026,17,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,coalcap,PY,2027,17,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,coalcap,PY,2028,17,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,PY,2022,321,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,PY,2023,321,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,PY,2024,321,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,PY,2025,321,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,PY,2026,321,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,PY,2027,321,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,PY,2028,321,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,MX,2022,4,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,MX,2023,4,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,MX,2024,4,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,MX,2025,4,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,MX,2026,4,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,MX,2027,4,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,gascap,MX,2028,4,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,CL,2022,0,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,CL,2023,0,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,CL,2024,204,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,CL,2025,204,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,CL,2026,204,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,CL,2027,204,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,CL,2028,204,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2022,2360,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2023,2360,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2024,2360,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2025,2360,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2026,2360,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2027,2360,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2028,2360,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2022,398,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2023,398,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2024,398,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2025,398,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2026,398,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2027,398,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,hydrocap,PY,2028,398,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,nuclearcap,PY,2022,131,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,nuclearcap,PY,2023,131,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,nuclearcap,PY,2024,131,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,nuclearcap,PY,2025,131,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,nuclearcap,PY,2026,131,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,nuclearcap,PY,2027,131,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,nuclearcap,PY,2028,131,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,oilcap,PY,2022,47,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,oilcap,PY,2023,47,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,oilcap,PY,2024,47,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,oilcap,PY,2025,47,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,oilcap,PY,2026,47,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,oilcap,PY,2027,47,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,oilcap,PY,2028,47,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2022,76,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2023,81,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2024,96,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2025,106,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2026,106,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2027,106,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2028,106,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,NG,2022,0,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,NG,2023,0,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,NG,2024,29,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,NG,2025,29,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,NG,2026,29,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,NG,2027,29,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,NG,2028,29,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2022,0,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2023,0,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2024,0,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2025,0,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2026,0,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2027,0,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,PY,2028,0,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,UY,2022,3,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,UY,2023,3,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,UY,2024,3,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,UY,2025,3,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,UY,2026,3,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,UY,2027,3,MW,,tCO2e/MWh
+6230,Oil & sons,FU9EYRF98Y94Y30RU0,power,renewablescap,UY,2028,3,MW,,tCO2e/MWh
+7710,Belgium power,YF9Y493Y943979739R9,power,renewablescap,BE,2022,0,MW,,tCO2e/MWh
+7710,Belgium power,YF9Y493Y943979739R9,power,renewablescap,BE,2023,0,MW,,tCO2e/MWh
+7710,Belgium power,YF9Y493Y943979739R9,power,renewablescap,BE,2024,0,MW,,tCO2e/MWh
+7710,Belgium power,YF9Y493Y943979739R9,power,renewablescap,BE,2025,0,MW,,tCO2e/MWh
+7710,Belgium power,YF9Y493Y943979739R9,power,renewablescap,BE,2026,0,MW,,tCO2e/MWh
+7710,Belgium power,YF9Y493Y943979739R9,power,renewablescap,BE,2027,0,MW,,tCO2e/MWh
+7710,Belgium power,YF9Y493Y943979739R9,power,renewablescap,BE,2028,0,MW,,tCO2e/MWh
+6520,Wind Kenya,0707R0ER79E9EERT33F,power,renewablescap,KE,2022,491,MW,,tCO2e/MWh
+6520,Wind Kenya,0707R0ER79E9EERT33F,power,renewablescap,KE,2023,491,MW,,tCO2e/MWh
+6520,Wind Kenya,0707R0ER79E9EERT33F,power,renewablescap,KE,2024,491,MW,,tCO2e/MWh
+6520,Wind Kenya,0707R0ER79E9EERT33F,power,renewablescap,KE,2025,550,MW,,tCO2e/MWh
+6520,Wind Kenya,0707R0ER79E9EERT33F,power,renewablescap,KE,2026,550,MW,,tCO2e/MWh
+6520,Wind Kenya,0707R0ER79E9EERT33F,power,renewablescap,KE,2027,688,MW,,tCO2e/MWh
+6520,Wind Kenya,0707R0ER79E9EERT33F,power,renewablescap,KE,2028,688,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,aviation,passenger,,2022,60823737,pkm,0.000132423,tCO2/pkm
+782,Meditaranian holding,WI32894923Y9IUDHFOS,aviation,passenger,,2023,60823737,pkm,0.000132423,tCO2/pkm
+782,Meditaranian holding,WI32894923Y9IUDHFOS,aviation,passenger,,2024,60823737,pkm,0.000132423,tCO2/pkm
+782,Meditaranian holding,WI32894923Y9IUDHFOS,aviation,passenger,,2025,60823737,pkm,0.000132423,tCO2/pkm
+782,Meditaranian holding,WI32894923Y9IUDHFOS,aviation,passenger,,2026,60823737,pkm,0.000132423,tCO2/pkm
+782,Meditaranian holding,WI32894923Y9IUDHFOS,aviation,passenger,,2027,60823737,pkm,0.000132423,tCO2/pkm
+782,Meditaranian holding,WI32894923Y9IUDHFOS,aviation,passenger,,2028,60823737,pkm,0.000132423,tCO2/pkm
+782,Meditaranian holding,WI32894923Y9IUDHFOS,cement,integrated facility,DZ,2022,435132,t cement,0.524923749,tCO2e/t cement
+782,Meditaranian holding,WI32894923Y9IUDHFOS,cement,integrated facility,DZ,2023,435132,t cement,0.524923749,tCO2e/t cement
+782,Meditaranian holding,WI32894923Y9IUDHFOS,cement,integrated facility,DZ,2024,435132,t cement,0.524923749,tCO2e/t cement
+782,Meditaranian holding,WI32894923Y9IUDHFOS,cement,integrated facility,DZ,2025,435132,t cement,0.524923749,tCO2e/t cement
+782,Meditaranian holding,WI32894923Y9IUDHFOS,cement,integrated facility,DZ,2026,435132,t cement,0.524923749,tCO2e/t cement
+782,Meditaranian holding,WI32894923Y9IUDHFOS,cement,integrated facility,DZ,2027,435132,t cement,0.524923749,tCO2e/t cement
+782,Meditaranian holding,WI32894923Y9IUDHFOS,cement,integrated facility,DZ,2028,435132,t cement,0.524923749,tCO2e/t cement
+782,Meditaranian holding,WI32894923Y9IUDHFOS,coal,coal,ZA,2022,20908,t coal,,tCO2e/t coal
+782,Meditaranian holding,WI32894923Y9IUDHFOS,coal,coal,ZA,2023,12475,t coal,,tCO2e/t coal
+782,Meditaranian holding,WI32894923Y9IUDHFOS,coal,coal,ZA,2024,4944,t coal,,tCO2e/t coal
+782,Meditaranian holding,WI32894923Y9IUDHFOS,coal,coal,ZA,2025,4944,t coal,,tCO2e/t coal
+782,Meditaranian holding,WI32894923Y9IUDHFOS,coal,coal,ZA,2026,4944,t coal,,tCO2e/t coal
+782,Meditaranian holding,WI32894923Y9IUDHFOS,coal,coal,ZA,2027,4944,t coal,,tCO2e/t coal
+782,Meditaranian holding,WI32894923Y9IUDHFOS,coal,coal,ZA,2028,4944,t coal,,tCO2e/t coal
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,DZ,2022,4076862244,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,DZ,2023,4077153600,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,DZ,2024,4092092650,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,DZ,2025,4303483287,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,DZ,2026,4303483287,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,DZ,2027,4344088757,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,DZ,2028,4409388338,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,ES,2022,9032,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,ES,2023,4748,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,ES,2024,4340,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,ES,2025,3809,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,ES,2026,3809,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,ES,2027,3489,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,ES,2028,3199,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,IT,2022,28839836,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,IT,2023,27957573,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,IT,2024,27262545,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,IT,2025,26377815,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,IT,2026,26377815,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,IT,2027,26377815,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,gas,IT,2028,26377815,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,DZ,2022,1963106186,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,DZ,2023,1889635976,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,DZ,2024,1852873365,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,DZ,2025,1815426247,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,DZ,2026,1786901768,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,DZ,2027,1745109638,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,DZ,2028,1720457936,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,ES,2022,3422,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,ES,2023,2880,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,ES,2024,2540,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,ES,2025,2228,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,ES,2026,2020,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,ES,2027,1896,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,oil and gas,oil,ES,2028,1717,GJ,,tCO2e/GJ
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,PY,2022,10,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,PY,2023,10,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,PY,2024,10,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,PY,2025,10,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,PY,2026,10,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,PY,2027,10,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,PY,2028,10,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,ES,2022,59,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,ES,2023,59,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,ES,2024,43,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,ES,2025,43,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,ES,2026,13,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,ES,2027,13,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,coalcap,ES,2028,13,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PY,2022,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PY,2023,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PY,2024,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PY,2025,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PY,2026,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PY,2027,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PY,2028,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,CL,2022,1,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,CL,2023,1,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,CL,2024,1,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,CL,2025,1,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,CL,2026,1,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,CL,2027,1,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,CL,2028,1,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,DZ,2022,774,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,DZ,2023,774,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,DZ,2024,774,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,DZ,2025,774,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,DZ,2026,774,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,DZ,2027,774,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,DZ,2028,774,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,ES,2022,153,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,ES,2023,153,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,ES,2024,153,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,ES,2025,153,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,ES,2026,153,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,ES,2027,153,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,ES,2028,153,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,MA,2022,127,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,MA,2023,127,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,MA,2024,127,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,MA,2025,127,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,MA,2026,127,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,MA,2027,127,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,MA,2028,127,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PT,2022,27,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PT,2023,27,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PT,2024,27,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PT,2025,27,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PT,2026,27,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PT,2027,27,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,gascap,PT,2028,27,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,MA,2022,44,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,MA,2023,44,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,MA,2024,44,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,MA,2025,44,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,MA,2026,44,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,MA,2027,44,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,MA,2028,44,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,TN,2022,3,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,TN,2023,3,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,TN,2024,3,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,TN,2025,3,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,TN,2026,3,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,TN,2027,3,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,TN,2028,3,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,ES,2022,51,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,ES,2023,51,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,ES,2024,51,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,ES,2025,51,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,ES,2026,51,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,ES,2027,51,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,ES,2028,51,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,PT,2022,212,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,PT,2023,212,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,PT,2024,212,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,PT,2025,212,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,PT,2026,212,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,PT,2027,212,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,hydrocap,PT,2028,212,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,nuclearcap,ES,2022,19,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,nuclearcap,ES,2023,19,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,nuclearcap,ES,2024,19,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,nuclearcap,ES,2025,19,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,nuclearcap,ES,2026,19,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,nuclearcap,ES,2027,19,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,nuclearcap,ES,2028,13,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,LY,2022,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,LY,2023,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,LY,2024,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,LY,2025,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,LY,2026,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,LY,2027,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,LY,2028,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,PT,2022,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,PT,2023,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,PT,2024,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,PT,2025,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,PT,2026,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,PT,2027,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,oilcap,PT,2028,4,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,LY,2022,12,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,LY,2023,16,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,LY,2024,35,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,LY,2025,35,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,LY,2026,35,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,LY,2027,35,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,LY,2028,35,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,BE,2022,2,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,BE,2023,2,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,BE,2024,2,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,BE,2025,2,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,BE,2026,2,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,BE,2027,2,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,BE,2028,2,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PY,2022,25,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PY,2023,28,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PY,2024,28,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PY,2025,33,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PY,2026,33,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PY,2027,33,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PY,2028,33,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,DE,2022,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,DE,2023,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,DE,2024,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,DE,2025,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,DE,2026,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,DE,2027,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,DE,2028,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,ES,2022,53,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,ES,2023,55,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,ES,2024,61,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,ES,2025,62,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,ES,2026,62,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,ES,2027,66,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,ES,2028,66,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,FR,2022,6,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,FR,2023,6,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,FR,2024,6,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,FR,2025,8,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,FR,2026,13,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,FR,2027,13,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,FR,2028,13,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GB,2022,7,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GB,2023,7,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GB,2024,11,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GB,2025,11,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GB,2026,40,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GB,2027,40,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GB,2028,41,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GR,2022,1,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GR,2023,1,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GR,2024,1,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GR,2025,1,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GR,2026,2,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GR,2027,2,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,GR,2028,2,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,HU,2022,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,HU,2023,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,HU,2024,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,HU,2025,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,HU,2026,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,HU,2027,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,HU,2028,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,IT,2022,6,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,IT,2023,6,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,IT,2024,7,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,IT,2025,7,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,IT,2026,7,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,IT,2027,7,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,IT,2028,7,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PT,2022,15,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PT,2023,18,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PT,2024,22,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PT,2025,22,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PT,2026,26,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PT,2027,26,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,PT,2028,26,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,RO,2022,11,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,RO,2023,11,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,RO,2024,11,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,RO,2025,11,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,RO,2026,11,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,RO,2027,11,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,RO,2028,11,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,SG,2022,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,SG,2023,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,SG,2024,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,SG,2025,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,SG,2026,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,SG,2027,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,SG,2028,0,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,MA,2022,133,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,MA,2023,136,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,MA,2024,139,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,MA,2025,158,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,MA,2026,168,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,MA,2027,194,MW,,tCO2e/MWh
+782,Meditaranian holding,WI32894923Y9IUDHFOS,power,renewablescap,MA,2028,194,MW,,tCO2e/MWh
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,electric,US,2022,85,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,electric,US,2023,113,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,electric,US,2024,581,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,electric,US,2025,985,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,electric,US,2026,1254,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,electric,US,2027,1350,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,electric,US,2028,2128,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,fuelcell,US,2022,0,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,fuelcell,US,2023,0,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,fuelcell,US,2024,37,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,fuelcell,US,2025,447,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,fuelcell,US,2026,699,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,fuelcell,US,2027,980,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,fuelcell,US,2028,1321,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,ice,US,2022,34310,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,ice,US,2023,34631,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,ice,US,2024,25581,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,ice,US,2025,26738,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,ice,US,2026,29416,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,ice,US,2027,17398,# vehicles,,
+118,Truck & Co.,FY84YF893YY0U30EFFYY,hdv,ice,US,2028,16716,# vehicles,,
+88,Irish power,342F704704503ROIYOYO,power,coalcap,IE,2022,2946,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,coalcap,IE,2023,2946,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,coalcap,IE,2024,2946,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,coalcap,IE,2025,2407,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,coalcap,IE,2026,2407,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,coalcap,IE,2027,2407,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,coalcap,IE,2028,2407,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,gascap,IE,2022,1288,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,gascap,IE,2023,1288,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,gascap,IE,2024,1288,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,gascap,IE,2025,1288,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,gascap,IE,2026,1288,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,gascap,IE,2027,520,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,gascap,IE,2028,520,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,renewablescap,IE,2022,7,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,renewablescap,IE,2023,25,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,renewablescap,IE,2024,247,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,renewablescap,IE,2025,247,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,renewablescap,IE,2026,413,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,renewablescap,IE,2027,518,MW,,tCO2e/MWh
+88,Irish power,342F704704503ROIYOYO,power,renewablescap,IE,2028,876,MW,,tCO2e/MWh
+66203,German micro solar Gmbh,9Y8YF98Y4F89Y98YF98Y,power,renewablescap,DE,2022,39,MW,,tCO2e/MWh
+66203,German micro solar Gmbh,9Y8YF98Y4F89Y98YF98Y,power,renewablescap,DE,2023,41,MW,,tCO2e/MWh
+66203,German micro solar Gmbh,9Y8YF98Y4F89Y98YF98Y,power,renewablescap,DE,2024,42,MW,,tCO2e/MWh
+66203,German micro solar Gmbh,9Y8YF98Y4F89Y98YF98Y,power,renewablescap,DE,2025,43,MW,,tCO2e/MWh
+66203,German micro solar Gmbh,9Y8YF98Y4F89Y98YF98Y,power,renewablescap,DE,2026,44,MW,,tCO2e/MWh
+66203,German micro solar Gmbh,9Y8YF98Y4F89Y98YF98Y,power,renewablescap,DE,2027,45,MW,,tCO2e/MWh
+66203,German micro solar Gmbh,9Y8YF98Y4F89Y98YF98Y,power,renewablescap,DE,2028,47,MW,,tCO2e/MWh
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,gas,ID,2022,0,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,gas,ID,2023,0,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,gas,ID,2024,14324360,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,gas,ID,2025,26006599,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,gas,ID,2026,26006599,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,gas,ID,2027,25185369,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,gas,ID,2028,23841553,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,oil,ID,2022,0,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,oil,ID,2023,0,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,oil,ID,2024,266128,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,oil,ID,2025,566698,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,oil,ID,2026,810107,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,oil,ID,2027,756974,GJ,,tCO2e/GJ
+88047,New oil ventures,3242OJOAD82687263964,oil and gas,oil,ID,2028,695777,GJ,,tCO2e/GJ
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,hydrocap,UY,2022,127,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,hydrocap,UY,2023,127,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,hydrocap,UY,2024,127,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,hydrocap,UY,2025,127,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,hydrocap,UY,2026,127,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,hydrocap,UY,2027,127,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,hydrocap,UY,2028,127,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,renewablescap,UY,2022,93,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,renewablescap,UY,2023,93,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,renewablescap,UY,2024,93,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,renewablescap,UY,2025,93,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,renewablescap,UY,2026,93,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,renewablescap,UY,2027,93,MW,,tCO2e/MWh
+2207,Uruguay power,9483R98Y98YHFY9DSHF,power,renewablescap,UY,2028,93,MW,,tCO2e/MWh
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,BE,2022,66204,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,BE,2023,77778,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,BE,2024,78938,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,BE,2025,78737,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,BE,2026,59017,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,BE,2027,28737,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,BE,2028,48756,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,CN,2022,6418,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,CN,2023,10953,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,CN,2024,69432,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,CN,2025,138732,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,CN,2026,179299,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,CN,2027,210814,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,CN,2028,241940,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,ES,2022,40,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,ES,2023,43,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,ES,2024,44,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,ES,2025,47,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,ES,2026,51,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,ES,2027,54,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,ES,2028,57,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,IN,2022,0,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,IN,2023,0,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,IN,2024,573,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,IN,2025,881,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,IN,2026,843,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,IN,2027,1149,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,IN,2028,1792,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,US,2022,0,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,US,2023,0,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,US,2024,59699,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,US,2025,78350,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,US,2026,72336,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,US,2027,70507,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,electric,US,2028,69557,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,BE,2022,7269,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,BE,2023,7237,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,BE,2024,7864,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,BE,2025,9025,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,BE,2026,9576,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,BE,2027,10789,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,BE,2028,8299,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,CN,2022,32377,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,CN,2023,36946,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,CN,2024,39555,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,CN,2025,39425,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,CN,2026,35949,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,CN,2027,35482,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,CN,2028,36491,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,IN,2022,1407,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,IN,2023,1308,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,IN,2024,986,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,IN,2025,542,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,IN,2026,542,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,IN,2027,542,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,IN,2028,542,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,MY,2022,1113,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,MY,2023,1281,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,MY,2024,566,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,MY,2025,724,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,MY,2026,726,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,MY,2027,4350,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,hybrid,MY,2028,6011,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,BE,2022,84889,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,BE,2023,81023,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,BE,2024,85835,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,BE,2025,84649,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,BE,2026,59133,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,BE,2027,38531,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,BE,2028,26150,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,CN,2022,151345,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,CN,2023,151950,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,CN,2024,148974,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,CN,2025,124401,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,CN,2026,105235,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,CN,2027,96613,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,CN,2028,90035,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,ES,2022,148,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,ES,2023,149,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,ES,2024,150,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,ES,2025,146,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,ES,2026,145,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,ES,2027,140,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,ES,2028,141,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,IN,2022,1677,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,IN,2023,1619,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,IN,2024,1506,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,IN,2025,1390,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,IN,2026,1259,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,IN,2027,792,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,IN,2028,363,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,JP,2022,20,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,JP,2023,16,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,JP,2024,14,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,JP,2025,14,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,JP,2026,14,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,JP,2027,14,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,JP,2028,14,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,MY,2022,9767,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,MY,2023,9162,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,MY,2024,9041,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,MY,2025,8955,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,MY,2026,8947,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,MY,2027,4502,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,MY,2028,1653,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,US,2022,18391,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,US,2023,19943,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,US,2024,19929,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,US,2025,17083,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,US,2026,16623,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,US,2027,13380,# vehicles,,
+9821,Car & Co,RY394YR9834Y9R43697R,automotive,ice,US,2028,0,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,BE,2022,66204,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,BE,2023,77778,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,BE,2024,78938,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,BE,2025,78737,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,BE,2026,59017,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,BE,2027,28737,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,BE,2028,48756,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,CN,2022,6418,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,CN,2023,10953,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,CN,2024,69432,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,CN,2025,138732,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,CN,2026,179299,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,CN,2027,210814,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,CN,2028,241940,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,ES,2022,40,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,ES,2023,43,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,ES,2024,44,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,ES,2025,47,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,ES,2026,51,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,ES,2027,54,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,ES,2028,57,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,IN,2022,0,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,IN,2023,0,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,IN,2024,573,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,IN,2025,881,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,IN,2026,843,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,IN,2027,1149,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,IN,2028,1792,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,US,2022,0,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,US,2023,0,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,US,2024,59699,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,US,2025,78350,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,US,2026,72336,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,US,2027,70507,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,electric,US,2028,69557,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,BE,2022,7269,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,BE,2023,7237,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,BE,2024,7864,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,BE,2025,9025,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,BE,2026,9576,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,BE,2027,10789,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,BE,2028,8299,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,CN,2022,32377,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,CN,2023,36946,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,CN,2024,39555,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,CN,2025,39425,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,CN,2026,35949,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,CN,2027,35482,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,CN,2028,36491,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,IN,2022,1407,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,IN,2023,1308,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,IN,2024,986,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,IN,2025,542,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,IN,2026,542,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,IN,2027,542,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,IN,2028,542,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,MY,2022,1113,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,MY,2023,1281,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,MY,2024,566,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,MY,2025,724,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,MY,2026,726,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,MY,2027,4350,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,hybrid,MY,2028,6011,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,BE,2022,84889,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,BE,2023,81023,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,BE,2024,85835,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,BE,2025,84649,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,BE,2026,59133,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,BE,2027,38531,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,BE,2028,26150,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,CN,2022,151345,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,CN,2023,151950,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,CN,2024,148974,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,CN,2025,124401,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,CN,2026,105235,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,CN,2027,96613,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,CN,2028,90035,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,ES,2022,148,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,ES,2023,149,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,ES,2024,150,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,ES,2025,146,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,ES,2026,145,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,ES,2027,140,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,ES,2028,141,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,IN,2022,1677,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,IN,2023,1619,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,IN,2024,1506,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,IN,2025,1390,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,IN,2026,1259,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,IN,2027,792,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,IN,2028,363,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,JP,2022,20,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,JP,2023,16,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,JP,2024,14,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,JP,2025,14,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,JP,2026,14,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,JP,2027,14,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,JP,2028,14,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,MY,2022,9767,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,MY,2023,9162,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,MY,2024,9041,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,MY,2025,8955,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,MY,2026,8947,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,MY,2027,4502,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,MY,2028,1653,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,US,2022,18391,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,US,2023,19943,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,US,2024,19929,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,US,2025,17083,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,US,2026,16623,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,US,2027,13380,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,automotive,ice,US,2028,0,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,electric,US,2022,85,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,electric,US,2023,113,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,electric,US,2024,581,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,electric,US,2025,985,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,electric,US,2026,1254,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,electric,US,2027,1350,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,electric,US,2028,2128,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,fuelcell,US,2022,0,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,fuelcell,US,2023,0,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,fuelcell,US,2024,37,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,fuelcell,US,2025,447,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,fuelcell,US,2026,699,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,fuelcell,US,2027,980,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,fuelcell,US,2028,1321,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,ice,US,2022,34310,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,ice,US,2023,34631,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,ice,US,2024,25581,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,ice,US,2025,26738,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,ice,US,2026,29416,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,ice,US,2027,17398,# vehicles,,
+4793,Car & Truck holding,YF9YF9837696394569FYY,hdv,ice,US,2028,16716,# vehicles,,
