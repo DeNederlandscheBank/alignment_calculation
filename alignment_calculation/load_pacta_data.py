@@ -2,7 +2,27 @@ import pandas as pd
 from typing import Union
 from .ac_config import alignmentCalculatorConfig
 
-def _load_scenario_data(scenario_data: dict, allow_mismatches: bool = True):
+def _harmonise_column_names(data:pd.DataFrame) -> pd.DataFrame: 
+    """
+    makes column names lowercase and connected by underscores instead of spaces
+
+    Parameters
+    ----------
+    data : pd.DataFrame
+        the DataFrame for which the columns names should be harmonised 
+
+    Returns
+    -------
+    pd.DataFrame
+        the DataFrame with the columns names harmonised
+    """
+
+    data.columns = data.columns.str.replace(' ', '_')
+    data.columns = data.columns.str.lower()
+
+    return data
+
+def _load_scenario_data(scenario_data: dict, allow_mismatches: bool = True) -> dict:
     """
     Load and process the scenario data
 
@@ -56,7 +76,7 @@ def _load_scenario_data(scenario_data: dict, allow_mismatches: bool = True):
 
                     df_scenario["technology"] = df_scenario["technology"].fillna("none")
 
-                    scenarios[year][scenario_set][scenario] = df_scenario
+                    scenarios[year][scenario_set][scenario] = _harmonise_column_names(df_scenario)
 
             elif (
                 allow_mismatches
@@ -85,7 +105,7 @@ def _load_scenario_data(scenario_data: dict, allow_mismatches: bool = True):
 
                     df_scenario["technology"] = df_scenario["technology"].fillna("none")
 
-                    scenarios[year][scenario_set][scenario] = df_scenario
+                    scenarios[year][scenario_set][scenario] = _harmonise_column_names(df_scenario)
 
             else:
                 for scenario in set(scen_sda_main["scenario"]).intersection(
@@ -113,7 +133,7 @@ def _load_scenario_data(scenario_data: dict, allow_mismatches: bool = True):
 
                     df_scenario["technology"] = df_scenario["technology"].fillna("none")
 
-                    scenarios[year][scenario_set][scenario] = df_scenario
+                    scenarios[year][scenario_set][scenario] = _harmonise_column_names(df_scenario)
 
     return scenarios
 
@@ -135,7 +155,7 @@ def _load_region_data(scenario_data: dict) -> dict:
 
     regions = {}
     for scenario_set, region in scenario_data["region_file"].items():
-        regions[scenario_set] = pd.read_csv(region)
+        regions[scenario_set] = _harmonise_column_names(pd.read_csv(region))
 
     return regions
 
@@ -157,7 +177,7 @@ def _load_loanbook_data(loan_file: str) -> pd.DataFrame:
     if loan_file is None:
         loans = None
     else:
-        loans = pd.read_csv(loan_file, index_col=0)
+        loans = _harmonise_column_names(pd.read_csv(loan_file, index_col=0))
 
     return loans
 
@@ -232,31 +252,31 @@ def _load_main_pacta_data(
     if isinstance(main_pacta_file, str):
         with pd.ExcelFile(main_pacta_file, engine='openpyxl') as xls:
             result = {
-                "company_indicators": _preprocess_indicators(
+                "company_indicators": _harmonise_column_names(_preprocess_indicators(
                     pd.read_excel(xls, indicator_sheet), settings
-                ),
-                "company_ownership": pd.read_excel(xls, ownership_sheet),
+                )),
+                "company_ownership": _harmonise_column_names(pd.read_excel(xls, ownership_sheet)),
             }
 
     elif isinstance(main_pacta_file, list):
         if ".csv" in main_pacta_file[0]:
             result = {
-                "company_indicators": _preprocess_indicators(
+                "company_indicators": _harmonise_column_names(_preprocess_indicators(
                     pd.read_csv(main_pacta_file[0]), settings
-                ),
-                "company_ownership": pd.read_csv(main_pacta_file[1]),
+                )),
+                "company_ownership": _harmonise_column_names(pd.read_csv(main_pacta_file[1])),
             }
         else:
             result = {
-                "company_indicators": _preprocess_indicators(
+                "company_indicators": _harmonise_column_names(_preprocess_indicators(
                     pd.read_excel(
                         main_pacta_file[0], sheet_name="Company PACTA Dataset - EO"
                     ),
                     settings,
-                ),
-                "company_ownership": pd.read_excel(
+                )),
+                "company_ownership": _harmonise_column_names(pd.read_excel(
                     main_pacta_file[1], sheet_name="Company Ownership"
-                ),
+                )),
             }
     else:
         raise ValueError()
