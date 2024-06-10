@@ -1,0 +1,121 @@
+scenario_source,scenario,sector,region,year,emission_factor,emission_factor_unit
+geco_2021,1.5c,aviation,global,2021,1.5589568610470243e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2022,1.494053798264465e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2023,1.429150735481906e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2024,1.3642476726993466e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2025,1.2993446099167873e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2026,1.2796569174969224e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2027,1.2599692250770574e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2028,1.2402815326571927e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2029,1.2205938402373278e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2030,1.2009061478174629e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2031,1.1724297124064759e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2032,1.143953276995489e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2033,1.115476841584502e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2034,1.087000406173515e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2035,1.058523970762528e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2036,1.030047535351541e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2037,1.001571099940554e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2038,9.73094664529567e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2039,9.446182291185802e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2040,9.161417937075931e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2041,8.913769786032607e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2042,8.666121634989282e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2043,8.418473483945959e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2044,8.170825332902635e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2045,7.92317718185931e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2046,7.675529030815986e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2047,7.427880879772662e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2048,7.180232728729336e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2049,6.932584577686013e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,aviation,global,2050,6.684936426642689e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,1.5c,steel,global,2021,1.4947960462921208,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2022,1.4376648204817533,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2023,1.3805335946713855,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2024,1.323402368861018,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2025,1.2662711430506504,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2026,1.1905637260322277,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2027,1.1148563090138048,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2028,1.0391488919953824,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2029,0.9634414749769595,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2030,0.8877340579585369,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2031,0.8182500817969329,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2032,0.748766105635329,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2033,0.679282129473725,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2034,0.6097981533121211,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2035,0.5403141771505171,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2036,0.47083020098891315,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2037,0.40134622482730925,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2038,0.33186224866570524,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2039,0.2623782725041013,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2040,0.19289429634249733,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2041,0.1771459053658721,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2042,0.16139751438924685,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2043,0.1456491234126216,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2044,0.12990073243599637,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2045,0.11415234145937113,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2046,0.09840395048274589,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2047,0.08265555950612066,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2048,0.06690716852949541,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2049,0.051158777552870155,tonnes of CO2 per tonne of steel
+geco_2021,1.5c,steel,global,2050,0.03541038657624493,tonnes of CO2 per tonne of steel
+geco_2021,reference,aviation,global,2021,1.5589268651228984e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2022,1.4939938064162131e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2023,1.4290607477095282e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2024,1.364127689002843e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2025,1.2991946302961578e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2026,1.2838099590120605e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2027,1.2684252877279636e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2028,1.2530406164438664e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2029,1.2376559451597694e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2030,1.2222712738756722e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2031,1.2034817584864688e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2032,1.1846922430972653e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2033,1.165902727708062e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2034,1.1471132123188585e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2035,1.1283236969296551e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2036,1.1095341815404517e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2037,1.0907446661512483e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2038,1.0719551507620449e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2039,1.0531656353728414e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2040,1.034376119983638e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2041,1.0121613110229929e-4,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2042,9.899465020623478e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2043,9.677316931017027e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2044,9.455168841410576e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2045,9.233020751804125e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2046,9.010872662197672e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2047,8.788724572591221e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2048,8.56657648298477e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2049,8.344428393378319e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,aviation,global,2050,8.122280303771868e-5,tonnes of CO2 per passenger per km travelled
+geco_2021,reference,steel,global,2021,1.5150407886186046,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2022,1.4779331243551281,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2023,1.4408254600916515,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2024,1.403717795828175,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2025,1.3666101315646983,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2026,1.3244353523812502,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2027,1.2822605731978023,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2028,1.2400857940143541,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2029,1.1979110148309062,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2030,1.155736235647458,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2031,1.119605549962073,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2032,1.083474864276688,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2033,1.047344178591303,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2034,1.0112134929059178,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2035,0.9750828072205328,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2036,0.9389521215351477,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2037,0.9028214358497626,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2038,0.8666907501643775,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2039,0.8305600644789926,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2040,0.7944293787936074,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2041,0.7683492685367648,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2042,0.7422691582799222,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2043,0.7161890480230797,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2044,0.690108937766237,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2045,0.6640288275093944,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2046,0.6379487172525519,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2047,0.6118686069957093,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2048,0.5857884967388667,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2049,0.559708386482024,tonnes of CO2 per tonne of steel
+geco_2021,reference,steel,global,2050,0.5336282762251815,tonnes of CO2 per tonne of steel

@@ -1,0 +1,233 @@
+---
+# The parameter file contains the default parameters for the alignmentCalculator. To overwrite these 
+# changes can be made directly to this file, or the update_settings method from the alignmentCalculator
+# can be used to set specific settings for an instance of the class.
+
+# The settings contains the following entries:
+    
+# main pacta file
+#  The link to the pacta files as supplied by AI. The year key is the start_year of the scenario.
+#  company_analytics_file_location should be a string with the file_location of the company_analytics
+#  file and company_indicators_file_location the file location of the company_inidicators file.
+main_pacta_file:
+  2023: 
+    - D:\pacta\data\2024-02-14_AI_2023Q4_ECB-Company-Analytics.csv
+    - D:\pacta\data\2024-02-14_AI_2023Q4_ECB-Company-Indicators.csv  
+  2022: 
+    - D:\pacta\data\2023-02-17_AI_2022Q4_ECB PACTA for Banks Free dataset_EO_Company_Analytics.csv
+    - D:\pacta\data\2023-02-17_AI_2022Q4_ECB PACTA for Banks Free dataset_EO_Company_Indicators.csv
+  2021: 
+    - D:\pacta\data\2022-07-25_AR_2021Q4_Free Dataset-PACTA for Banks_EO1-Company-Analytics.csv
+    - D:\pacta\data\2023-02-17_AI_2022Q4_ECB PACTA for Banks Free dataset_EO_Company_Indicators.csv
+
+# company information file
+#  The location of the company information from AI, company_information_file_location should
+#  be a string pointing to the location of the company information file.
+company_information_file: D:\pacta\data\2024-02-14_AI_2023Q4_ECB-Company-Information.csv
+
+# economic weights
+#   The economic weights are used for the sector normalisation of the alignment scores. The economic
+#   weights should be given for all sectors. In the economic weights dict the sector key indicates
+#   which of the sectors the weights should be applied to. The weight should be an numeric value that
+#   indicates the weighing of the sector.
+economic_weights: 
+  automotive: 172770
+  cement: 33769
+  coal: 3667
+  oil and gas: 2752
+  power: 234584
+  steel: 56000
+
+# production thresholds
+#   The production thresholds are used to determine which companies are filtered out of the data 
+#   because the production-turnover ratio or the production-total asset ratio is too low. The sector
+#   key indicates which sector the ratios apply to, the ar_ratio is the production-total asset ratio
+#   abd the to_ratio is the production-turnover ratio.
+production_thresholds: 
+  power: 
+    asset_ratio: 5.00e-07
+    turnover_ratio: 5.00e-07
+  automotive: 
+    asset_ratio: 5.00e-07
+    turnover_ratio: 5.00e-07
+  cement: 
+    asset_ratio: 1.00e-09
+    turnover_ratio: 1.00e-09
+  coal: 
+    asset_ratio: 2.00e-06
+    turnover_ratio: 2.00e-06
+  oil and gas: 
+    asset_ratio: 1.00e-04
+    turnover_ratio: 1.00e-04
+  steel: 
+    asset_ratio: 1.00e-09
+    turnover_ratio: 1.00e-09
+
+# scenario data
+#   The scenario data includes links to the scenario files and the regions used for the scenario data.
+#   The scenario files should be given per year, this year should also be the start year of the 
+#   scenario and will be the start year of the analysis. The scenario_set_name is the name of the 
+#   set of scenarios described in the files and the scenario_file_tms and scenario_file_sda are the
+#   file locations of the tms and sda scenarios for the scenario set. The region_file_location refers
+#   to the region file for the scenario set.  
+scenario_data: 
+  scenario_files: 
+    2023: 
+      weo: 
+        scenario_file_tms: ../data/scenario_data/weo2022_p4b.csv
+        scenario_file_sda: ../data/scenario_data/weo2022_ei_p4b.csv
+      geco: 
+        scenario_file_tms: ../data/scenario_data/JRC-GECO-2022-Auto-HDV-Fossil-Fuels-Power-start-yr-2022.csv
+        scenario_file_sda: ../data/scenario_data/JRC-GECO-2022-CO2-Intensity-Steel-Aviation-start-yr-2022.csv
+    2022: 
+      weo: 
+        scenario_file_tms: ../data/scenario_data/weo2022_p4b.csv
+        scenario_file_sda: ../data/scenario_data/weo2022_ei_p4b.csv
+      geco: 
+        scenario_file_tms: ../data/scenario_data/JRC-GECO-2022-Auto-HDV-Fossil-Fuels-Power-start-yr-2022.csv
+        scenario_file_sda: ../data/scenario_data/JRC-GECO-2022-CO2-Intensity-Steel-Aviation-start-yr-2022.csv
+    2021: 
+      weo: 
+        scenario_file_tms: ../data/scenario_data/IEA-WEO-NZE-2021-Fossil-Fuels-Power-Auto-start-yr-2021.csv
+        scenario_file_sda: ../data/scenario_data/IEA-NZE-2021-CO2-Intensity-for-Steel-Cement-start-yr-2021.csv
+      geco: 
+        scenario_file_tms: ../data/scenario_data/JRC-GECO-2021-Auto-HDV-Fossil-Fuels-Power-start-yr-2021.csv
+        scenario_file_sda: ../data/scenario_data/JRC-GECO-2021-CO2-Intensity-Steel-Aviation-start-yr-2021.csv
+  region_file:
+    weo: ../data/scenario_data/region_weo2022.csv
+    geco: ../data/scenario_data/region_geco2022.csv
+
+# sectoral approach
+#   The sectoral approach determines how each of the sectors should be approached during the 
+#   calculation of the net alignment. The sector key indicates for which sectors the following
+#   values will hold. The tms_sda value should be either "tms" or "sda" dependent on which 
+#   approach should be taken for the calculation. For each of the technologies within the 
+#   sector, e.g. technology_a, technology_b, technology_c and technology_d it should be 
+#   indicated whether the sector based targets or technology based targets should be used if
+#   the sector is a tms sector. The build_out, phase_out and other keys indicate whether the
+#   technology should be seen as a build_out, phase_out or other technology. For the sda 
+#   technologies all the technologies should be other technologies. The regional_bool 
+#   indicates whether regional data should be used for the calculation of the targets
+#   and the active bool indicates whether or not a sector is active and will be taken into 
+#   account when reading the data.
+sectoral_approach:
+  power:
+    approach: tms
+    sector: 
+      - renewablescap
+    technology: 
+      - hydrocap
+      - gascap
+      - oilcap
+      - coalcap
+      - nuclearcap
+    build_out: 
+      - renewablescap
+    phase_out: 
+      - gascap
+      - oilcap
+      - coalcap
+    other: 
+      - hydrocap
+      - nuclearcap
+    regional: true
+    active: true
+  coal: 
+    approach: tms
+    sector: []
+    technology: 
+      - coal
+    build_out: []
+    phase_out: 
+      - coal
+    other: [] 
+    regional: false
+    active: true
+  oil and gas: 
+    approach: tms
+    sector: []
+    technology: 
+      - gas
+      - oil
+    build_out: []
+    phase_out: 
+      - gas
+      - oil
+    other: []
+    regional: false
+    active: true
+  hdv: 
+    approach: tms
+    sector: 
+      - electric
+      - fuelcell
+      - hybrid
+    technology: 
+      - ice
+    build_out: 
+      - electric
+      - fuelcell
+      - hybrid
+    phase_out: 
+      - ice
+    other: []
+    regional: false
+    active: false
+  automotive: 
+    approach: tms
+    sector: 
+      - electric 
+      - fuelcell 
+      - hybrid
+    technology: 
+      - ice
+    build_out: 
+      - electric
+      - fuelcell
+      - hybrid
+    phase_out: 
+      - ice
+    other: []
+    regional: false
+    active: true
+  steel: 
+    approach: sda
+    sector: []
+    technology: []
+    build_out: []
+    phase_out: []
+    other: 
+      - steel
+    regional: false
+    active: true
+  cement: 
+    approach: sda
+    sector: []
+    technology: []
+    build_out: []
+    phase_out: []
+    other: 
+      - cement
+    regional: false
+    active: true
+  aviation: 
+    approach: sda
+    sector: []
+    technology: []
+    build_out: []
+    phase_out: []
+    other: 
+      - aviation
+    regional: false
+    active: false
+  shipping: 
+    approach: sda
+    sector: []
+    technology: []
+    build_out: []
+    phase_out: []
+    other: 
+      - shipping
+    regional: false
+    active: false
+...
