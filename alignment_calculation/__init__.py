@@ -1,3 +1,3 @@
 from .calculator import alignmentCalculator
-from .make_loanbook import loanbookMaker
+from .prepare_loanbook import loanbookPreparer
 from .ac_config import alignmentCalculatorConfig

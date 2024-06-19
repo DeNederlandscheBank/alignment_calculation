@@ -18,7 +18,7 @@ def _add_orbis_lei_based(
     lei_column: str
         The name of the column with the lei codes in pacta_data
     extra_columns : dict
-        The extra columns for which data should be fetched. The value relates to the 
+        The extra columns for which data should be fetched. The value relates to the
         expression that should be added to the query to get the additional data and
         the key relates to how the additional datapoint should be called.
 
@@ -57,7 +57,7 @@ def _add_external_data(
         A dataframe with external_ids and possible company_lei and parent_lei
         columns to which the orbis data should be added
     extra_columns : dict
-        The extra columns for which data should be fetched. The value relates to the 
+        The extra columns for which data should be fetched. The value relates to the
         expression that should be added to the query to get the additional data and
         the key relates to how the additional datapoint should be called.
 
@@ -150,6 +150,7 @@ def _load_loan_data(
         Concatenated DataFrame containing AnaCredit loan data.
     """
     pacta_unique = pacta_data.drop_duplicates(subset=["counterparty_id"])
+    # 7000 is used to not exceed SQL IN statement limits
     num_splits = len(pacta_unique) // 7000 + 1
     anacredit_data = []
 

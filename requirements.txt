@@ -1,4 +1,3 @@
-ecb_connectors>3.21.15
 numpy>1.25.1
 pandas>1.4.1
 setuptools

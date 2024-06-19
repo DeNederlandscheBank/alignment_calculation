@@ -7,9 +7,9 @@ from .read_data import _load_loan_counterparties, _load_loan_data, _add_external
 from .ac_config import alignmentCalculatorConfig
 
 
-class loanbookMaker:
+class loanbookPreparer:
     """
-    The loanbookMaker class can construct a loanbook based on loan data, possible
+    The loanbookPreparer class can construct a loanbook based on loan data, possible
     augmented with external data and connect it to the PACTA dataset. This can yield
     a loanbook that can directly be used in the alignment calculator.
 
@@ -78,9 +78,9 @@ class loanbookMaker:
             ]
         self._pacta = pd.concat(pacta_files)
 
-    def make_loanbook(
+    def prepare_loanbook(
         self,
-        loan_year: int = 2023,
+        base_year: int = 2023,
         month: int = 12,
         start_year: int = None,
         start_month: int = None,
@@ -92,11 +92,11 @@ class loanbookMaker:
         external_columns: dict = None,
     ) -> Union[pd.DataFrame, None]:
         """
-        Create a loanbook based on loan data for a specified year and month.
+        Prepares a loanbook based on loan data for a specified year and month.
 
         Parameters:
         -----------
-        loan_year : int, optional
+        base_year : int, optional
             The year for which loan data will be loaded.
             Default = 2022.
 
@@ -168,7 +168,7 @@ class loanbookMaker:
 
         if match_data is None:
             loan_counterparties = _load_loan_counterparties(
-                year=loan_year,
+                year=base_year,
                 month=month,
                 start_month=start_month,
                 start_year=start_year,
@@ -184,7 +184,7 @@ class loanbookMaker:
 
         loan_data = _load_loan_data(
             pacta_data=pacta_data,
-            year=loan_year,
+            year=base_year,
             month=month,
             portfolio_codes=portfolio_codes,
             start_month=start_month,

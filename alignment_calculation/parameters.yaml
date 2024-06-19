@@ -69,7 +69,7 @@ production_thresholds:
 #   scenario and will be the start year of the analysis. The scenario_set_name is the name of the 
 #   set of scenarios described in the files and the scenario_file_tms and scenario_file_sda are the
 #   file locations of the tms and sda scenarios for the scenario set. The region_file_location refers
-#   to the region file for the scenario set.  
+#   to the region file for the scenario set. Not every scenario set needs tobe present for each year.  
 scenario_data: 
   scenario_files: 
     2023: 
