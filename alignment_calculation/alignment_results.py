@@ -82,7 +82,6 @@ class alignmentResults:
 
     def add_information_to_results(
         self,
-        results_data: pd.DataFrame,
         loan_indicator: str,
         main_sector: bool = True,
         production_values: bool = True,
@@ -96,8 +95,6 @@ class alignmentResults:
 
         Parameters
         ----------
-        results_data : pandas.DataFrame
-            DataFrame containing results data to which additional information will be added.
         loan_indicator : str
             column with the loan amount relevant for the analysis.
         main_sector : bool, optional
@@ -139,7 +136,7 @@ class alignmentResults:
         1     2355      0.31        4847964             ...            ...            ...
         2      31       -0.4        11235887            ...            ...            ...
         """
-
+        results_data = self._results_data.copy()
         if main_sector:
             results_data = self._add_main_sector(results_data, loan_indicator)
         if company_names:
@@ -317,12 +314,14 @@ class alignmentResults:
             data.append(
                 results_data[
                     results_data["portfolio_date"].astype(str).str.contains(str(year))
-                ].merge(
+                ]
+                .merge(
                     production,
                     how="left",
-                    left_on=["company_id", "sector", "technology", "year"],
+                    left_on=["company_id", "sector", "technology", "end_year"],
                     right_on=["company_id", "sector", "technology", "year"],
                 )
+                .drop(columns="year")
             )
 
         return pd.concat(data)
@@ -437,15 +436,15 @@ class alignmentResults:
                 ].merge(
                     production_sector,
                     how="left",
-                    left_on=["company_id", "sector", "year"] + include_technology,
+                    left_on=["company_id", "sector", "end_year"] + include_technology,
                     right_on=["company_id", "sector", "year"] + include_technology,
                 )
                 data_plus_production["production"] = (
-                    data_plus_production["production"].fillna(0) + 0.0001
+                    data_plus_production["production"].fillna(0) + production_fill
                 )
                 production_company_technology = (
                     data_plus_production.groupby(
-                        ["company_id", "sector", "year", self._portfolio_id]
+                        ["company_id", "sector", "end_year", self._portfolio_id]
                         + include_technology,
                         as_index=False,
                     )["production"]
@@ -456,9 +455,14 @@ class alignmentResults:
                     data_plus_production.merge(
                         production_company_technology,
                         how="left",
-                        left_on=["company_id", "sector", "year", self._portfolio_id]
+                        left_on=["company_id", "sector", "end_year", self._portfolio_id]
                         + include_technology,
-                        right_on=["company_id", "sector", "year", self._portfolio_id]
+                        right_on=[
+                            "company_id",
+                            "sector",
+                            "end_year",
+                            self._portfolio_id,
+                        ]
                         + include_technology,
                     )
                 )
@@ -473,7 +477,7 @@ class alignmentResults:
             )
             data.append(
                 data_plus_production.drop(
-                    columns=["ratio", "production", "production_total"]
+                    columns=["ratio", "production", "production_total", "year"]
                 )
             )
 
@@ -516,7 +520,8 @@ class alignmentResults:
                 production = (
                     self._df_pacta[year]
                     .groupby(
-                        ["company_id", "sector", "technology", "year"], as_index=False
+                        ["company_id", "sector", "technology", "year"],
+                        as_index=False,
                     )["target"]
                     .sum()
                 )
@@ -535,12 +540,14 @@ class alignmentResults:
                         results_data["portfolio_date"]
                         .astype(str)
                         .str.contains(str(year))
-                    ].merge(
+                    ]
+                    .merge(
                         production,
                         how="left",
-                        left_on=["company_id", "sector", "technology", "year"],
+                        left_on=["company_id", "sector", "technology", "end_year"],
                         right_on=["company_id", "sector", "technology", "year"],
                     )
+                    .drop(columns="year")
                 )
 
         return pd.concat(data)
