@@ -5,25 +5,22 @@
 
 # The settings contains the following entries:
     
-# main pacta file
-#  The link to the pacta files as supplied by AI. The year key is the start_year of the scenario.
+# main climate file
+#  The link to the climate files as supplied by AI. The year key is the start_year of the scenario.
 #  company_analytics_file_location should be a string with the file_location of the company_analytics
 #  file and company_indicators_file_location the file location of the company_inidicators file.
-main_pacta_file:
+main_climate_file:
   2023: 
-    - D:\pacta\data\2024-02-14_AI_2023Q4_ECB-Company-Analytics.csv
-    - D:\pacta\data\2024-02-14_AI_2023Q4_ECB-Company-Indicators.csv  
+    - ../data/company_data/company_analytics.csv
+    - ../data/company_data/company_indicators.csv
   2022: 
-    - D:\pacta\data\2023-02-17_AI_2022Q4_ECB PACTA for Banks Free dataset_EO_Company_Analytics.csv
-    - D:\pacta\data\2023-02-17_AI_2022Q4_ECB PACTA for Banks Free dataset_EO_Company_Indicators.csv
-  2021: 
-    - D:\pacta\data\2022-07-25_AR_2021Q4_Free Dataset-PACTA for Banks_EO1-Company-Analytics.csv
-    - D:\pacta\data\2023-02-17_AI_2022Q4_ECB PACTA for Banks Free dataset_EO_Company_Indicators.csv
+    - ../data/company_data/company_analytics.csv
+    - ../data/company_data/company_indicators.csv
 
 # company information file
 #  The location of the company information from AI, company_information_file_location should
 #  be a string pointing to the location of the company information file.
-company_information_file: D:\pacta\data\2024-02-14_AI_2023Q4_ECB-Company-Information.csv
+company_information_file: ../data/company_data/company_information.csv
 
 # economic weights
 #   The economic weights are used for the sector normalisation of the alignment scores. The economic

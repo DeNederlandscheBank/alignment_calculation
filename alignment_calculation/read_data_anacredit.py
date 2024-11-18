@@ -4,7 +4,7 @@ from vl_connect import devo
 
 
 def _add_orbis_lei_based(
-    pacta_data: pd.DataFrame, lei_column: str, external_columns: dict
+    climate_data: pd.DataFrame, lei_column: str, external_columns: dict
 ) -> pd.DataFrame:
     """
     Adds data from orbis based on lei code
@@ -16,7 +16,7 @@ def _add_orbis_lei_based(
         A dataframe with external_ids and possible company_lei and parent_lei
         columns to which the orbis data should be added
     lei_column: str
-        The name of the column with the lei codes in pacta_data
+        The name of the column with the lei codes in climate_data
     extra_columns : dict
         The extra columns for which data should be fetched. The value relates to the
         expression that should be added to the query to get the additional data and
@@ -25,18 +25,18 @@ def _add_orbis_lei_based(
     Returns:
     --------
     pandas.DataFrame
-        The pacta_data dataframe with the additional orbis data.
+        The climate_data dataframe with the additional orbis data.
     """
 
-    pacta_unique = pacta_data.drop_duplicates(subset=[lei_column]).dropna(
+    climate_unique = climate_data.drop_duplicates(subset=[lei_column]).dropna(
         subset=[lei_column]
     )
     orbis_data_lei = _add_orbis_data(
-        leis=str(pacta_unique[lei_column].tolist())[1:-1],
+        leis=str(climate_unique[lei_column].tolist())[1:-1],
         extra_columns=external_columns,
     ).drop(columns=["external_id"])
     orbis_data_lei = orbis_data_lei.merge(
-        pacta_unique[[lei_column, "external_id"]],
+        climate_unique[[lei_column, "external_id"]],
         left_on=["lei"],
         right_on=[lei_column],
     ).drop(columns=["lei", lei_column])
@@ -45,7 +45,7 @@ def _add_orbis_lei_based(
 
 
 def _add_external_data(
-    pacta_data: pd.DataFrame, external_columns: dict
+    climate_data: pd.DataFrame, external_columns: dict
 ) -> pd.DataFrame:
     """
     Adds data from orbis based on bvdidnumber
@@ -66,32 +66,32 @@ def _add_external_data(
     pandas.DataFrame
         The processed dataframe with the additional orbis data.
     """
-    pacta_unique = pacta_data.drop_duplicates(subset=["external_id"]).dropna(
+    climate_unique = climate_data.drop_duplicates(subset=["external_id"]).dropna(
         subset=["external_id"]
     )
-    num_splits = len(pacta_unique) // 7000 + 1
+    num_splits = len(climate_unique) // 7000 + 1
     orbis_data = []
 
     for i in range(num_splits):
         start_idx = i * 7000
-        end_idx = min((i + 1) * 7000, len(pacta_unique))
+        end_idx = min((i + 1) * 7000, len(climate_unique))
         orbis_data.append(
             _add_orbis_data(
-                bvdids=str(pacta_unique[start_idx:end_idx]["external_id"].tolist())[
+                bvdids=str(climate_unique[start_idx:end_idx]["external_id"].tolist())[
                     1:-1
                 ],
                 extra_columns=external_columns,
             ).drop(columns=["lei"])
         )
 
-    if "company_lei" in pacta_data.columns:
+    if "company_lei" in climate_data.columns:
         orbis_data.append(
-            _add_orbis_lei_based(pacta_data, "company_lei", external_columns)
+            _add_orbis_lei_based(climate_data, "company_lei", external_columns)
         )
 
-    if "parent_lei" in pacta_data.columns:
+    if "parent_lei" in climate_data.columns:
         orbis_data.append(
-            _add_orbis_lei_based(pacta_data, "parent_lei", external_columns)
+            _add_orbis_lei_based(climate_data, "parent_lei", external_columns)
         )
 
     orbis_data = (
@@ -100,28 +100,28 @@ def _add_external_data(
         .max(numeric_only=True)
     )
 
-    return pacta_data.merge(
+    return climate_data.merge(
         orbis_data, how="left", left_on=["external_id"], right_on=["external_id"]
     )
 
 
 def _load_loan_data(
-    pacta_data: pd.DataFrame,
+    climate_data: pd.DataFrame,
     year: int,
     month: int,
     portfolio_codes: list,
     start_month: int,
     start_year: int,
     frequency: str,
-    additional_columns: list,
+    additional_columns: dict,
 ) -> pd.DataFrame:
     """
-    Load loan data based on the counterparty_id for the combined PACTA data.
+    Load loan data based on the counterparty_id for the combined CLIMATE data.
 
     Parameters:
     -----------
-    pacta_data : pd.DataFrame
-        DataFrame containing the combined PACTA data.
+    climate_data : pd.DataFrame
+        DataFrame containing the combined CLIMATE data.
 
     year : int
         The year for loan data.
@@ -141,7 +141,7 @@ def _load_loan_data(
     frequency : str
         The frequency for which the data should be loaded.
 
-    additional_columns : list
+    additional_columns : dict
         Additional columns to include in loan data.
 
     Returns:
@@ -149,14 +149,14 @@ def _load_loan_data(
     pd.DataFrame
         Concatenated DataFrame containing AnaCredit loan data.
     """
-    pacta_unique = pacta_data.drop_duplicates(subset=["counterparty_id"])
+    climate_unique = climate_data.drop_duplicates(subset=["counterparty_id"])
     # 7000 is used to not exceed SQL IN statement limits
-    num_splits = len(pacta_unique) // 7000 + 1
+    num_splits = len(climate_unique) // 7000 + 1
     anacredit_data = []
 
     for i in range(num_splits):
         start_idx = i * 7000
-        end_idx = min((i + 1) * 7000, len(pacta_unique))
+        end_idx = min((i + 1) * 7000, len(climate_unique))
         anacredit_data.append(
             _load_anacredit_loan_data(
                 year=year,
@@ -167,7 +167,7 @@ def _load_loan_data(
                 additional_columns=additional_columns,
                 frequency=frequency,
                 riad_ids=str(
-                    pacta_unique[start_idx:end_idx]["counterparty_id"].tolist()
+                    climate_unique[start_idx:end_idx]["counterparty_id"].tolist()
                 )[1:-1],
             )
         )
@@ -175,7 +175,7 @@ def _load_loan_data(
 
 
 def _load_loan_counterparties(
-    year: int, month: int, start_year: int, start_month: int, include_orbis: bool = True
+    year: int, month: int, start_year: int|None, start_month: int|None, include_orbis: bool = True
 ) -> pd.DataFrame:
     """
     Reads the counterparty data from AnaCredit by using DEVO
@@ -454,7 +454,7 @@ def _load_loan_counterparties(
 
 
 def _add_orbis_data(
-    bvdids: str = "''", leis: str = "''", extra_columns: dict = None
+    bvdids: str = "''", leis: str = "''", extra_columns: dict|None = None
 ) -> pd.DataFrame:
     """
     Reads orbis total_assets, turnover and currentratio data through the use of DEVO
@@ -524,8 +524,8 @@ def _load_anacredit_loan_data(
     year: int,
     month: int,
     portfolio_codes: list,
-    start_year: int,
-    start_month: int,
+    start_year: int | None,
+    start_month: int | None,
     frequency: str,
     riad_ids: str,
     additional_columns: dict,

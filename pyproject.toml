@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alignment_calculation"
+version = "0.2.5"
+description = "With this code the alignment calculations can be performed to gain insight into climate transition risk within a loan protfolio"
+authors = [
+    { name = "Michiel Nijhuis" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+
+dependencies = [
+    "numpy>=1.25.1",
+    "pandas>=1.4.1",
+    "ruamel.yaml>=0.17.21",
+]
+
+[project.urls]
+homepage = "https://github.com/DeNederlandscheBank/alignment_calculation"
+
+[tool.setuptools]
+packages = ["alignment_calculation"]

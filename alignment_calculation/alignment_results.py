@@ -6,9 +6,9 @@ class alignmentResults:
     def __init__(
         self,
         results_data: pd.DataFrame,
-        pacta_company_indicators: pd.DataFrame,
-        df_pacta: pd.DataFrame,
-        scenario_data: pd.DataFrame,
+        climate_company_indicators: dict,
+        df_climate: dict,
+        scenario_data: dict,
         settings: dict,
         portfolio_id: str,
     ) -> None:
@@ -19,8 +19,8 @@ class alignmentResults:
             DataFrame containing results data to group and calculate scores.
         """
         self._results_data = results_data
-        self._pacta_company_indicators = pacta_company_indicators
-        self._df_pacta = df_pacta
+        self._climate_company_indicators = climate_company_indicators
+        self._df_climate = df_climate
         self._scenario_data = scenario_data
         self._settings = settings
         self._portfolio_id = portfolio_id
@@ -38,7 +38,7 @@ class alignmentResults:
             columns=["weighted_deviation", "weighted_target"]
         )
 
-    def group_scores(self, grouper: list = None) -> pd.DataFrame:
+    def group_scores(self, grouper: list| None = None) -> pd.DataFrame:
         """
         Group scores in the results data based on specified groupers. if no
         grouper is provided the results_data is just returned. The results
@@ -70,7 +70,9 @@ class alignmentResults:
         0     A                  60              600  0.100000
         1     B                  40              200  0.200000
         """
-        if grouper is not None:
+        if grouper is None:
+            return self._results_data
+        else:
             results_data = self._results_data.groupby(grouper, as_index=False).sum(
                 numeric_only=True
             )
@@ -189,8 +191,8 @@ class alignmentResults:
         """
         data = []
         for year in self._scenario_data.keys():
-            if year in self._pacta_company_indicators.keys():
-                names = self._df_pacta[year][
+            if year in self._climate_company_indicators.keys():
+                names = self._df_climate[year][
                     ["company_id", "name_company"]
                 ].drop_duplicates()
                 data.append(
@@ -254,7 +256,7 @@ class alignmentResults:
             how="left",
             left_on="company_id",
             right_on="company_id",
-            suffixes=["", "_main"],
+            suffixes=("", "_main"),
         )
 
         return results_data
@@ -295,9 +297,9 @@ class alignmentResults:
         2           2   power   coalcap    2023    3000
         """
         data = []
-        for year in self._pacta_company_indicators.keys():
+        for year in self._climate_company_indicators.keys():
             production = (
-                self._pacta_company_indicators[year]
+                self._climate_company_indicators[year]
                 .groupby(
                     ["company_id", "sector", "technology", "year"], as_index=False
                 )["production"]
@@ -412,8 +414,8 @@ class alignmentResults:
                 sda_technologies = sda_technologies + sector_setting["other"]
 
         data = []
-        for year in self._pacta_company_indicators.keys():
-            production = self._pacta_company_indicators[year]
+        for year in self._climate_company_indicators.keys():
+            production = self._climate_company_indicators[year]
             production["plant_location"] = production["plant_location"].fillna(
                 country_fill
             )
@@ -516,9 +518,9 @@ class alignmentResults:
 
         data = []
         for year in self._scenario_data.keys():
-            if year in self._pacta_company_indicators.keys():
+            if year in self._climate_company_indicators.keys():
                 production = (
-                    self._df_pacta[year]
+                    self._df_climate[year]
                     .groupby(
                         ["company_id", "sector", "technology", "year"],
                         as_index=False,

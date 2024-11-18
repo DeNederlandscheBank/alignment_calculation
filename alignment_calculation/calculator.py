@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-from typing import Any, List, Union
-from .load_pacta_data import (
-    _load_main_pacta_data,
+from typing import Any, List
+from .load_climate_data import (
+    _load_main_climate_data,
     _load_scenario_data,
     _load_loanbook_data,
     _load_region_data,
@@ -21,18 +21,18 @@ class alignmentCalculator:
     ----------
     portfolio_id : str, optional
         Identifier for the loan portfolio (default is "portfolio_code").
-    custom_settings : dict, optional
+    custom_settings : dict| None, optional
         Custom settings dictionary to update default settings (default is None).
         For an overview of which settings could be given, please see the
         docstring of the update_settings method.
-    loan_file : str or pandas.DataFrame or Any, optional
+    loan_file : str or pandas.DataFrame or bool, optional
         The loan file to be used. Depending on the type of the loan_file it is assumed
         to have a certain value:
             - str: the path to a loan file.
             - pd.dataFrame: a dataframe containing the loan data.
-            - None: no loan data will be loaded.
-            - anything else, the loan data will be generated from a loanbookPreparer
-        (default is None).
+            - True: the loan data will be generated from a loanbookPreparer
+            - False: no loan data will be loaded.
+        default is False
     loanbook_settings : dict, optional
         Settings for loanbook creation, for a full overview of the settings
         please see the docsting of the loanbookPreparer here also you will find the
@@ -93,8 +93,8 @@ class alignmentCalculator:
     def __init__(
         self,
         portfolio_id: str = "portfolio_code",
-        custom_settings: dict = None,
-        loan_file: Union[str, pd.DataFrame, Any] = None,
+        custom_settings: dict | None = None,
+        loan_file: str| pd.DataFrame| bool = False,
         loanbook_settings: dict = {
             "base_year": 2023,
             "month": 12,
@@ -114,9 +114,9 @@ class alignmentCalculator:
         if custom_settings is not None:
             self.update_settings(custom_settings)
 
-        self._pacta_company_indicators = {}
-        self._pacta_ownership = {}
-        self._df_pacta = {}
+        self._climate_company_indicators = {}
+        self._climate_ownership = {}
+        self._df_climate = {}
         self._external_columns = loanbook_settings["external_columns"]
         self._scenario_set = scenario_set
         self._pathway = pathway
@@ -125,18 +125,18 @@ class alignmentCalculator:
         if not debug:
             self._scenario_data = _load_scenario_data(self._settings["scenario_data"])
 
-            for year in self._settings["main_pacta_file"].keys():
-                pacta_data = _load_main_pacta_data(
-                    self._settings["main_pacta_file"][year], settings=self._settings
+            for year in self._settings["main_climate_file"].keys():
+                climate_data = _load_main_climate_data(
+                    self._settings["main_climate_file"][year], settings=self._settings
                 )
-                self._pacta_company_indicators[year] = pacta_data["company_indicators"]
-                self._pacta_ownership[year] = pacta_data["company_ownership"]
+                self._climate_company_indicators[year] = climate_data["company_indicators"]
+                self._climate_ownership[year] = climate_data["company_ownership"]
 
             if isinstance(loan_file, str):
                 self._loans = _load_loanbook_data(loan_file)
             elif isinstance(loan_file, pd.DataFrame):
                 self._loans = loan_file.copy()
-            elif loan_file is not None:
+            elif loan_file == True:
                 lbm = loanbookPreparer(settings=self._settings)
                 self._loans = lbm.prepare_loanbook(**loanbook_settings)
 
@@ -209,7 +209,7 @@ class alignmentCalculator:
 
         master_data = {}
         portfolio_dates = set()
-        for year in self._pacta_company_indicators.keys():
+        for year in self._climate_company_indicators.keys():
             if (self._scenario_set in self._scenario_data[year]) and (
                 self._pathway in self._scenario_data[year][self._scenario_set]
             ):
@@ -228,12 +228,20 @@ class alignmentCalculator:
                 )
 
         total_results = []
+        ar = alignmentResults(
+            pd.DataFrame(),
+            self._climate_company_indicators,
+            self._df_climate,
+            self._scenario_data,
+            self._settings,
+            self._portfolio_id,
+        )
         for portfolio_date in portfolio_dates:
             if int(portfolio_date / 100) in master_data.keys():
                 data = master_data[int(portfolio_date / 100)].copy()
             else:
                 print(
-                    f"{portfolio_date} was not matched to PACTA data in {int(portfolio_date/100)}"
+                    f"{portfolio_date} was not matched to climate data in {int(portfolio_date/100)}"
                 )
                 continue
 
@@ -247,8 +255,8 @@ class alignmentCalculator:
 
             ar = alignmentResults(
                 pd.concat(total_results),
-                self._pacta_company_indicators,
-                self._df_pacta,
+                self._climate_company_indicators,
+                self._df_climate,
                 self._scenario_data,
                 self._settings,
                 self._portfolio_id,
@@ -434,11 +442,11 @@ class alignmentCalculator:
             corresponds to a setting parameter and its new value. The settings
             is a dict possibly containing the following entries:
 
-            main pacta file
-            The link to the pacta files as supplied by AI. The year key is the start_year of the scenario.
+            main climate file
+            The link to the climate files as supplied by AI. The year key is the start_year of the scenario.
             company_analytics_file_location should be a string with the file_location of the company_analytics
             file and company_indicators_file_location the file location of the company_inidicators file.
-            "main_pacta_files":
+            "main_climate_files":
                 {year: [company_analytics_file_location,
                         company_indicators_file_location],
                 },
@@ -523,18 +531,18 @@ class alignmentCalculator:
         >>> ac = alignmentCalculator()
         >>> ac.update_settings({
                 "company_information_file":
-                    'C:\data\pacta_data\company_information.csv'
+                    'C:\\data\\climate_data\\company_information.csv'
                 })
         """
-        main_pacta_file = None
+        main_climate_file = None
         company_information_file = None
         economic_weights = None
         production_thresholds = None
         scenario_data = None
         sectoral_approach = None
         for key, val in settings_change.items():
-            if key == "main_pacta_file":
-                main_pacta_file = val
+            if key == "main_climate_file":
+                main_climate_file = val
             elif key == "company_information_file":
                 company_information_file = val
             elif key == "economic_weights":
@@ -553,7 +561,7 @@ class alignmentCalculator:
                 )
 
         new_settings = alignmentCalculatorConfig().config(
-            main_pacta_file=main_pacta_file,
+            main_climate_file=main_climate_file,
             company_information_file=company_information_file,
             economic_weights=economic_weights,
             production_thresholds=production_thresholds,
@@ -568,17 +576,17 @@ class alignmentCalculator:
             self._settings = new_settings
 
     def update_loanbook(
-        self, loan_file: str = None, loanbook_settings: dict = None
+        self, loan_file: str | None = None, loanbook_settings: dict | None = None
     ) -> None:
         """
         Update the loanbook data based on the specified parameters.
 
         Parameters
         ----------
-        loan_file : str, optional
+        loan_file : str |None, optional
             Path to a loan file containing loan data (default is None).
             If provided, loads loan data from the specified file.
-        loanbook_settings : dict, optional
+        loanbook_settings : dict |None, optional
             The loanbook_settings dict can contain the following key, value
             pairs.
             base_year : int
@@ -618,6 +626,8 @@ class alignmentCalculator:
         """
         if loan_file is None:
             lbm = loanbookPreparer()
+            if loanbook_settings is None:
+                loanbook_settings = {}
             self._loans = lbm.prepare_loanbook(**loanbook_settings)
         else:
             self._loans = _load_loanbook_data(loan_file)
@@ -632,7 +642,7 @@ class alignmentCalculator:
         use_region_file: bool,
         year: int,
         normalise_method: str,
-        scenario_year: int = None,
+        scenario_year: int | None = None,
     ) -> pd.DataFrame:
         """
         Preprocesses data for loan processing based on configuration.
@@ -666,7 +676,7 @@ class alignmentCalculator:
             - "portfolio": Perform normalisation based on the individual portfolio data.
             - "total": Perform normalisation based on total loan data given.
             - "economic": Perform normalisation using economic weights.
-        scenario_year : int, optional
+        scenario_year : int|None, optional
             The scenario year used for calculations, if none is given it will
             be set equal to year, by default None.
 
@@ -695,10 +705,10 @@ class alignmentCalculator:
         if scenario_year is None:
             scenario_year = year
 
-        self._calculate_pacta(year, scenario_year)
-        pacta_data = self._combine_asset_locations(year)
-        pacta_data = self._combine_pacta_loan_data(
-            pacta_data,
+        self._calculate_climate(year, scenario_year)
+        climate_data = self._combine_asset_locations(year)
+        climate_data = self._combine_climate_loan_data(
+            climate_data,
             use_loan_file,
             individual_loans,
             only_parents,
@@ -707,33 +717,33 @@ class alignmentCalculator:
             year,
         )
 
-        pacta_data = self._apply_production_thresholds(pacta_data)
-        pacta_data = self._split_loans_over_sector(pacta_data, loan_indicator, year)
-        pacta_data = self._split_over_technology(pacta_data, loan_indicator)
+        climate_data = self._apply_production_thresholds(climate_data)
+        climate_data = self._split_loans_over_sector(climate_data, loan_indicator, year)
+        climate_data = self._split_over_technology(climate_data, loan_indicator)
 
-        pacta_data = self._normalise_production(
+        climate_data = self._normalise_production(
             normalise_method,
-            pacta_data,
+            climate_data,
             year,
             self._settings["economic_weights"],
             loan_indicator=loan_indicator,
         )
-        pacta_data["target"] = pacta_data["target"] / pacta_data["norm"]
-        pacta_data["production"] = pacta_data["production"] / pacta_data["norm"]
+        climate_data["target"] = climate_data["target"] / climate_data["norm"]
+        climate_data["production"] = climate_data["production"] / climate_data["norm"]
 
-        return pacta_data
+        return climate_data
 
-    def _calculate_pacta(self, year: int, scenario_year: int) -> None:
+    def _calculate_climate(self, year: int, scenario_year: int) -> None:
         """
-        Calculate PACTA targets and update company indicators for a specific year.
+        Calculate climate targets and update company indicators for a specific year.
 
-        This method calculates PACTA targets and updates company indicators for
+        This method calculates climate targets and updates company indicators for
         a specific year based on the provided scenario year.
 
         Parameters
         ----------
         year : int
-            The year for which PACTA targets are being calculated.
+            The year for which climate targets are being calculated.
         scenario_year : int
             The scenario year used for calculations.
 
@@ -744,35 +754,37 @@ class alignmentCalculator:
         Examples
         --------
         >>> ac = alignmentCalculator()
-        >>> ac._calculate_pacta(year=2023, scenario_year=2024)
+        >>> ac._calculate_climate(year=2023, scenario_year=2024)
         """
 
         self._add_region(year, self._reconcile_regions())
-        df_pacta = self._pacta_company_indicators[year].copy()
-        df_pacta["technology_temp"] = df_pacta["technology"]
+        df_climate = self._climate_company_indicators[year].copy()
+        df_climate['production'] = df_climate['production'].astype(np.float64)
+        df_climate["technology_temp"] = df_climate["technology"]
 
         for sector, sector_settings in self._settings["sectoral_approach"].items():
             if sector_settings["approach"] == "sda":
-                df_pacta.loc[(df_pacta["sector"] == sector), "technology_temp"] = "none"
+                df_climate.loc[(df_climate["sector"] == sector), "technology_temp"] = "none"
 
-        df_pacta = df_pacta.merge(
+        df_climate = df_climate.merge(
             self._scenario_data[scenario_year][self._scenario_set][self._pathway],
             how="left",
             left_on=["sector", "technology_temp", "year", "region"],
             right_on=["sector", "technology", "year", "region"],
             suffixes=["", "_scenario"],
         )
-        df_pacta["target"] = np.nan
+        df_climate["target"] = np.nan
+        df_climate["target"] = df_climate["target"].astype(np.float64)
 
         for sector, sector_settings in self._settings["sectoral_approach"].items():
             if sector_settings["approach"] == "tms":
-                df_pacta = self._calculate_tms(
-                    df_pacta, sector, sector_settings, scenario_year
+                df_climate = self._calculate_tms(
+                    df_climate, sector, sector_settings, scenario_year
                 )
             elif sector_settings["approach"] == "sda":
-                df_pacta = self._calculate_sda(df_pacta, sector, scenario_year)
+                df_climate = self._calculate_sda(df_climate, sector, scenario_year)
 
-        df_pacta = df_pacta[
+        df_climate = df_climate[
             [
                 "company_id",
                 "name_company",
@@ -787,18 +799,18 @@ class alignmentCalculator:
             ]
         ]
 
-        df_pacta.loc[df_pacta["emission_factor"] > 0, "target"] = (
-            df_pacta.loc[df_pacta["emission_factor"] > 0, "target"]
-            * df_pacta.loc[df_pacta["emission_factor"] > 0, "production"]
+        df_climate.loc[df_climate["emission_factor"] > 0, "target"] = (
+            df_climate.loc[df_climate["emission_factor"] > 0, "target"]
+            * df_climate.loc[df_climate["emission_factor"] > 0, "production"]
         )
-        df_pacta.loc[df_pacta["emission_factor"] > 0, "production"] = (
-            df_pacta.loc[df_pacta["emission_factor"] > 0, "emission_factor"]
-            * df_pacta.loc[df_pacta["emission_factor"] > 0, "production"]
+        df_climate.loc[df_climate["emission_factor"] > 0, "production"] = (
+            df_climate.loc[df_climate["emission_factor"] > 0, "emission_factor"]
+            * df_climate.loc[df_climate["emission_factor"] > 0, "production"]
         )
 
-        self._df_pacta[year] = df_pacta.dropna(subset=["target"])
+        self._df_climate[year] = df_climate.dropna(subset=["target"])
 
-    def _add_region(self, year: int, region_mapping: dict = None) -> None:
+    def _add_region(self, year: int, region_mapping: dict | None = None) -> None:
         """
         Add region information to company indicators for a specific year.
 
@@ -810,7 +822,7 @@ class alignmentCalculator:
         ----------
         year : int
             The year for which region information is being added.
-        region_mapping : dict, optional
+        region_mapping : dict|None, optional
             Dictionary mapping sectors to region-country mappings, by default None.
 
         Examples
@@ -818,25 +830,25 @@ class alignmentCalculator:
         Examples
         --------
         >>> ac = alignmentCalculator()
-        >>> ac._calculate_pacta(year=2023, scenario_year=2024)
+        >>> ac._calculate_climate(year=2023, scenario_year=2024)
         >>> ac._add_region(2023, ac._reconsile_regions())
         """
-        self._pacta_company_indicators[year]["region"] = "global"
+        self._climate_company_indicators[year]["region"] = "global"
 
         if region_mapping is not None:
             for sector_name, sector_region in region_mapping.items():
                 sector_rows = (
-                    self._pacta_company_indicators[year]["sector"] == sector_name
+                    self._climate_company_indicators[year]["sector"] == sector_name
                 )
                 for region, countries in sector_region.items():
-                    region_rows = self._pacta_company_indicators[year][
+                    region_rows = self._climate_company_indicators[year][
                         "plant_location"
                     ].isin(countries)
-                    self._pacta_company_indicators[year].loc[
+                    self._climate_company_indicators[year].loc[
                         sector_rows & region_rows, "region"
                     ] = region
 
-    def _reconcile_regions(self) -> dict:
+    def _reconcile_regions(self) -> dict | None:
         """
         Reconcile regional data based on sectoral approaches.
 
@@ -845,14 +857,15 @@ class alignmentCalculator:
 
         Returns
         -------
-        dict
-            Dictionary mapping sectors to region-country mappings.
+        dict|None
+            Dictionary mapping sectors to region-country mappings, if the attribute
+            _regions has not yet been initiated, None is returned
 
 
         Examples
         --------
         >>> ac = alignmentCalculator()
-        >>> ac._calculate_pacta(year=2023, scenario_year=2024)
+        >>> ac._calculate_climate(year=2023, scenario_year=2024)
         >>> ac._reconcile_regions()
         'coal': {'global': ['BG','HR','CY','MT', ...
         """
@@ -905,7 +918,7 @@ class alignmentCalculator:
 
     def _calculate_tms(
         self,
-        df_pacta: pd.DataFrame,
+        df_climate: pd.DataFrame,
         sector: str,
         sector_settings: dict,
         scenario_year: int,
@@ -915,8 +928,8 @@ class alignmentCalculator:
 
         Parameters
         ----------
-        df_pacta : pandas.DataFrame
-            DataFrame containing company indicators data (PACTA data).
+        df_climate : pandas.DataFrame
+            DataFrame containing company indicators data (climate data).
         sector : str
             Sector name for which TMS calculation is performed.
         sector_settings : dict
@@ -931,8 +944,8 @@ class alignmentCalculator:
         """
 
         for tech in sector_settings["sector"]:
-            df_totals = df_pacta.merge(
-                df_pacta[df_pacta["year"] == scenario_year]
+            df_totals = df_climate.merge(
+                df_climate[df_climate["year"] == scenario_year]
                 .groupby(["company_id", "sector", "region"], as_index=False)[
                     "production"
                 ]
@@ -940,12 +953,12 @@ class alignmentCalculator:
                 how="left",
                 left_on=["company_id", "sector", "region"],
                 right_on=["company_id", "sector", "region"],
-                suffixes=["", "_ini_total"],
+                suffixes=("", "_ini_total"),
             )
             df_totals = df_totals.merge(
-                df_pacta[
-                    (df_pacta["year"] == scenario_year)
-                    & (df_pacta["technology"] == tech)
+                df_climate[
+                    (df_climate["year"] == scenario_year)
+                    & (df_climate["technology"] == tech)
                 ]
                 .groupby(["company_id", "sector", "region"], as_index=False)[
                     "production"
@@ -954,17 +967,17 @@ class alignmentCalculator:
                 how="left",
                 left_on=["company_id", "sector", "region"],
                 right_on=["company_id", "sector", "region"],
-                suffixes=["", "_ini"],
+                suffixes=("", "_ini"),
             )
-            rows = (df_pacta["technology"] == tech) & (df_pacta["sector"] == sector)
-            df_pacta.loc[rows, "target"] = (
-                df_totals.loc[rows, "production_ini_total"] * df_pacta.loc[rows, "smsp"]
+            rows = (df_climate["technology"] == tech) & (df_climate["sector"] == sector)
+            df_climate.loc[rows, "target"] = (
+                df_totals.loc[rows, "production_ini_total"] * df_climate.loc[rows, "smsp"]  # type: ignore
                 + df_totals.loc[rows, "production_ini"]
             )
 
         for tech in sector_settings["technology"]:
-            df_initial = df_pacta.merge(
-                df_pacta[df_pacta["year"] == scenario_year]
+            df_initial = df_climate.merge(
+                df_climate[df_climate["year"] == scenario_year]
                 .groupby(
                     ["company_id", "plant_location", "technology", "sector", "region"],
                     as_index=False,
@@ -985,25 +998,25 @@ class alignmentCalculator:
                     "technology",
                     "region",
                 ],
-                suffixes=["", "_ini"],
+                suffixes=("", "_ini"),
             )
-            rows = (df_pacta["technology"] == tech) & (df_pacta["sector"] == sector)
-            df_pacta.loc[rows, "target"] = (
-                df_initial.loc[rows, "production_ini"] * df_pacta.loc[rows, "tmsr"]
+            rows = (df_climate["technology"] == tech) & (df_climate["sector"] == sector)
+            df_climate.loc[rows, "target"] = (
+                df_initial.loc[rows, "production_ini"] * df_climate.loc[rows, "tmsr"]  # type: ignore
             )
 
-        return df_pacta
+        return df_climate
 
     def _calculate_sda(
-        self, df_pacta: pd.DataFrame, sector: str, scenario_year: int
+        self, df_climate: pd.DataFrame, sector: str, scenario_year: int
     ) -> pd.DataFrame:
         """
         Calculate and update target values based on SDA calculation for a sector.
 
         Parameters
         ----------
-        df_pacta : pandas.DataFrame
-            DataFrame containing company indicators data (PACTA data).
+        df_climate : pandas.DataFrame
+            DataFrame containing company indicators data (climate data).
         sector : str
             Sector name for which SDA calculation is performed.
         scenario_year : int
@@ -1015,15 +1028,15 @@ class alignmentCalculator:
             Updated DataFrame with calculated target values.
         """
 
-        df_pacta.loc[df_pacta["sector"] == sector, "target"] = df_pacta[
+        df_climate.loc[df_climate["sector"] == sector, "target"] = df_climate[
             "emission_factor_scenario"
         ]
 
-        return df_pacta
+        return df_climate
 
     def _combine_asset_locations(self, year: int) -> pd.DataFrame:
         """
-        Combine and aggregate data from the PACTA DataFrame based on the location of the assets.
+        Combine and aggregate data from the climate DataFrame based on the location of the assets.
         Parameters
         ----------
         year : int
@@ -1035,7 +1048,7 @@ class alignmentCalculator:
             Combined and aggregated DataFrame based on the location of the assets.
         """
 
-        data = self._df_pacta[year].copy()
+        data = self._df_climate[year].copy()
         sda_rows = data["emission_factor"] > 0
         data.loc[sda_rows, "technology"] = data.loc[sda_rows, "sector"]
 
@@ -1081,9 +1094,9 @@ class alignmentCalculator:
 
         return sector_approaches
 
-    def _combine_pacta_loan_data(
+    def _combine_climate_loan_data(
         self,
-        pacta_data: pd.DataFrame,
+        climate_data: pd.DataFrame,
         use_loan_file: bool,
         individual_loans: bool,
         only_parents: bool,
@@ -1092,15 +1105,15 @@ class alignmentCalculator:
         year: int,
     ) -> pd.DataFrame:
         """
-        Combine PACTA TMS and SDA data with loan data and normalise the combined data.
+        Combine climate TMS and SDA data with loan data and normalise the combined data.
 
-        This method combines PACTA TMS (Total Market Share) and SDA (Sectoral Decarbonisation)
+        This method combines climate TMS (Total Market Share) and SDA (Sectoral Decarbonisation)
         data with loan data and subsequently normalises the combined data.
 
         Parameters
         ----------
-        pacta_data : pandas.DataFrame
-            DataFrame containing PACTA data (TMS and SDA).
+        climate_data : pandas.DataFrame
+            DataFrame containing climate data (TMS and SDA).
         use_loan_file : bool
             Flag indicating whether to use loan file data.
         individual_loans : bool
@@ -1121,7 +1134,10 @@ class alignmentCalculator:
             Combined and normalised DataFrame.
         """
         if use_loan_file:
-            loan_data = self._loans.copy()
+            if self._loans is not None:
+                loan_data = self._loans.copy()
+            else:
+                raise ValueError("no loandata has been supplied")
             if only_parents:
                 loan_data = self._only_parents(
                     loan_data, loan_column, year, facet_col=facet_col
@@ -1154,7 +1170,7 @@ class alignmentCalculator:
                     }
                 )
         else:
-            loan_data = self._df_pacta[year][["company_id"]].copy()
+            loan_data = self._df_climate[year][["company_id"]].copy()
             loan_data[self._portfolio_id] = "all"
             loan_data["loan_id"] = loan_data["company_id"]
             loan_data[loan_column] = 1
@@ -1164,23 +1180,23 @@ class alignmentCalculator:
 
         for extra_col in facet_col:
             if extra_col != "company_id":
-                if (extra_col in pacta_data.columns) and (
+                if (extra_col in climate_data.columns) and (
                     extra_col in loan_data.columns
                 ):
-                    pacta_data = pacta_data.rename(
-                        columns={extra_col: extra_col + "_pacta"}
+                    climate_data = climate_data.rename(
+                        columns={extra_col: extra_col + "_climate"}
                     )
-        pacta_data = loan_data.merge(
-            pacta_data, how="left", left_on=["company_id"], right_on=["company_id"]
+        climate_data = loan_data.merge(
+            climate_data, how="left", left_on=["company_id"], right_on=["company_id"]
         )
-        if "portfolio_date" not in pacta_data.columns:
-            pacta_date = []
-            for date in self._pacta_company_indicators.keys():
-                pacta_data["portfolio_date"] = int(str(date) + "12")
-                pacta_date.append(pacta_data.copy())
-            pacta_data = pd.concat(pacta_date)
+        if "portfolio_date" not in climate_data.columns:
+            climate_date = []
+            for date in self._climate_company_indicators.keys():
+                climate_data["portfolio_date"] = int(str(date) + "12")
+                climate_date.append(climate_data.copy())
+            climate_data = pd.concat(climate_date)
 
-        return pacta_data
+        return climate_data
 
     def _only_parents(
         self,
@@ -1247,7 +1263,7 @@ class alignmentCalculator:
         self, stop_at_weak_parents: bool, year: int, lowest_level: bool = True
     ) -> pd.DataFrame:
         """
-        Get parent companies from the PACTA data.
+        Get parent companies from the climate data.
 
         Parameters:
         -----------
@@ -1268,7 +1284,7 @@ class alignmentCalculator:
         pd.DataFrame
             DataFrame containing parent companies with their corresponding parent_company_id s.
         """
-        df_structure = self._pacta_ownership[year].copy()
+        df_structure = self._climate_ownership[year].copy()
 
         if stop_at_weak_parents:
             df_structure = df_structure[df_structure["is_parent"]]
@@ -1287,7 +1303,7 @@ class alignmentCalculator:
             df_structure.groupby("company_id")["parent_company_id"].first()
         )
 
-        df_structure = self._pacta_ownership[year].copy()
+        df_structure = self._climate_ownership[year].copy()
         others = df_structure[
             ~df_structure["company_id"].isin(parents.index)
         ].sort_values(by="ownership_level", ascending=False)
@@ -1315,7 +1331,7 @@ class alignmentCalculator:
         Examples
         --------
         >>> ac = alignmentCalculator()
-        >>> updated_pacta_data = lp._apply_production_thresholds(ac._loans)
+        >>> updated_climate_data = lp._apply_production_thresholds(ac._loans)
         """
         if ("turnover" in loan_data.columns) and ("total_assets" in loan_data.columns):
             companies = self._determine_ratios(loan_data)
@@ -1392,40 +1408,40 @@ class alignmentCalculator:
             DataFrame with loan amounts split over different sectors.
         """
         # Determine the production in each sector
-        pacta = self._pacta_company_indicators[year].copy()
-        pacta = pacta[
-            pacta["company_id"].isin(
+        climate = self._climate_company_indicators[year].copy()
+        climate = climate[
+            climate["company_id"].isin(
                 self._get_parent_companies(False, year)["parent_company_id"]
             )
         ]
-        pacta = pacta.groupby(["company_id", "sector"], as_index=False)[
+        climate = climate.groupby(["company_id", "sector"], as_index=False)[
             "production"
         ].sum()
 
         # get the ratio of the production in different sectors to split loan amounts
-        pacta = (
-            self._pacta_company_indicators[year]
+        climate = (
+            self._climate_company_indicators[year]
             .groupby(["company_id", "sector"], as_index=False)["production"]
             .sum()
             .merge(
-                pacta.groupby(["sector"])["production"].sum(),
+                climate.groupby(["sector"])["production"].sum(),
                 left_on=["sector"],
                 right_index=True,
                 suffixes=["", "_total"],
             )
         )
-        pacta["production_fraction"] = pacta["production"] / pacta["production_total"]
+        climate["production_fraction"] = climate["production"] / climate["production_total"]
 
-        pacta = pacta[["company_id", "sector", "production"]].merge(
-            pacta.groupby(["company_id"])["production"].sum(),
+        climate = climate[["company_id", "sector", "production"]].merge(
+            climate.groupby(["company_id"])["production"].sum(),
             left_on=["company_id"],
             right_index=True,
             suffixes=["", "_total"],
         )
-        pacta["ratio"] = pacta["production"] / pacta["production_total"]
+        climate["ratio"] = climate["production"] / climate["production_total"]
 
         loans = loans.merge(
-            pacta[["company_id", "sector", "ratio"]],
+            climate[["company_id", "sector", "ratio"]],
             left_on=["company_id", "sector"],
             right_on=["company_id", "sector"],
         )
@@ -1437,7 +1453,7 @@ class alignmentCalculator:
         return loans
 
     def _split_over_technology(
-        self, pacta_data: pd.DataFrame, loan_indicator: str
+        self, climate_data: pd.DataFrame, loan_indicator: str
     ) -> pd.DataFrame:
         """
         Split loan amounts over different technologies within a sector
@@ -1469,30 +1485,30 @@ class alignmentCalculator:
             "loan_id",
             "portfolio_date",
         ]
-        pacta_data["production_plus_target"] = (
-            pacta_data["target"].fillna(0) + pacta_data["production"].fillna(0) + 0.0001
+        climate_data["production_plus_target"] = (
+            climate_data["target"].fillna(0) + climate_data["production"].fillna(0) + 0.0001
         )
-        sector_amount = pacta_data.groupby(grouper_cols, as_index=False, dropna=False)[
+        sector_amount = climate_data.groupby(grouper_cols, as_index=False, dropna=False)[
             "production_plus_target"
         ].sum()
-        pacta_data = pacta_data.merge(
+        climate_data = climate_data.merge(
             sector_amount,
             how="left",
             left_on=grouper_cols,
             right_on=grouper_cols,
-            suffixes=["", "_total"],
+            suffixes=("", "_total"),
         )
 
         # Perform weighted calculations
-        pacta_data["technology_ratio"] = (
-            pacta_data["production_plus_target"]
-            / pacta_data["production_plus_target_total"]
+        climate_data["technology_ratio"] = (
+            climate_data["production_plus_target"]
+            / climate_data["production_plus_target_total"]
         )
-        pacta_data[loan_indicator] = pacta_data[loan_indicator] * (
-            pacta_data["technology_ratio"]
+        climate_data[loan_indicator] = climate_data[loan_indicator] * (
+            climate_data["technology_ratio"]
         )
 
-        pacta_data = pacta_data.drop(
+        climate_data = climate_data.drop(
             columns=[
                 "production_plus_target",
                 "production_plus_target_total",
@@ -1500,7 +1516,7 @@ class alignmentCalculator:
             ]
         )
 
-        return pacta_data
+        return climate_data
 
     def _normalise_production(
         self,
@@ -1511,7 +1527,7 @@ class alignmentCalculator:
         loan_indicator: str,
     ) -> pd.DataFrame:
         """
-        Normalise production data in the PACTA DataFrame at different levels.
+        Normalise production data in the climate DataFrame at different levels.
 
         This method applies different normalisation methods to the combined DataFrame
         containing production data and loan data.
@@ -1542,7 +1558,7 @@ class alignmentCalculator:
         Returns
         -------
         pd.DataFrame
-            Normalised PACTA DataFrame based on the specified method.
+            Normalised climate DataFrame based on the specified method.
 
         """
 
@@ -1578,7 +1594,7 @@ class alignmentCalculator:
         Parameters
         ----------
         df_combined : pandas.DataFrame
-            Combined DataFrame containing loan and PACTA data.
+            Combined DataFrame containing loan and climate data.
         year : int
             The year for which global normalisation is being performed.
 
@@ -1587,7 +1603,7 @@ class alignmentCalculator:
         pandas.DataFrame
             DataFrame with a norm column added which includes the normalisation weights.
         """
-        df_total = self._pacta_company_indicators[year].copy()
+        df_total = self._climate_company_indicators[year].copy()
         companies = self._get_parent_companies(False, year)
         parents = companies["parent_company_id"].unique().tolist()
         df_total = df_total[df_total["company_id"].isin(parents)]
@@ -1596,7 +1612,7 @@ class alignmentCalculator:
             df_total,
             left_on="sector",
             right_on="sector",
-            suffixes=["", "_sector_total"],
+            suffixes=("", "_sector_total"),
         )
         df_combined["norm"] = df_combined["production_sector_total"]
 
@@ -1615,7 +1631,7 @@ class alignmentCalculator:
         Parameters
         ----------
         df_combined : pandas.DataFrame
-            Combined DataFrame containing loan and PACTA data.
+            Combined DataFrame containing loan and climate data.
         economic_weights : str
             The weight of each sector
         year : int
@@ -1628,7 +1644,7 @@ class alignmentCalculator:
         """
         if economic_weights is None:
             economic_weights = self._settings["economic_weights"]
-        df_total = self._pacta_company_indicators[year].copy()
+        df_total = self._climate_company_indicators[year].copy()
         companies = self._get_parent_companies(False, year)
         parents = companies["parent_company_id"].unique().tolist()
         df_total = df_total[df_total["company_id"].isin(parents)]
@@ -1641,7 +1657,7 @@ class alignmentCalculator:
             df_total,
             left_on="sector",
             right_on="sector",
-            suffixes=["", "_sector_total"],
+            suffixes=("", "_sector_total"),
         )
         df_combined["norm"] = df_combined["production_sector_total"]
 
@@ -1662,7 +1678,7 @@ class alignmentCalculator:
         Parameters
         ----------
         df_combined : pandas.DataFrame
-            Combined DataFrame containing loan and PACTA data.
+            Combined DataFrame containing loan and climate data.
         loan_indicator : str
             column with the loan amount relevant for the analysis.
         year : int
@@ -1680,7 +1696,7 @@ class alignmentCalculator:
             df_total,
             left_on="sector",
             right_on="sector",
-            suffixes=["", "_sector_total"],
+            suffixes=("", "_sector_total"),
         )
         df_combined["norm"] = df_combined["production_sector_total"].fillna(1)
 
@@ -1702,7 +1718,7 @@ class alignmentCalculator:
         Parameters
         ----------
         df_combined : pandas.DataFrame
-            Combined DataFrame containing loan and PACTA data.
+            Combined DataFrame containing loan and climate data.
         loan_indicator : str
             column with the loan amount relevant for the analysis.
         year : int
@@ -1722,7 +1738,7 @@ class alignmentCalculator:
             df_total,
             left_on=["sector", self._portfolio_id],
             right_on=["sector", self._portfolio_id],
-            suffixes=["", "_sector_total"],
+            suffixes=("", "_sector_total"),
         )
         df_combined["norm"] = df_combined["production_sector_total"].fillna(1)
 
@@ -1742,7 +1758,7 @@ class alignmentCalculator:
         Parameters
         ----------
         df_combined : pandas.DataFrame
-            Combined DataFrame containing loan and PACTA data.
+            Combined DataFrame containing loan and climate data.
 
         Returns
         -------
@@ -1755,7 +1771,7 @@ class alignmentCalculator:
             df_total,
             left_on=["sector", "company_id"],
             right_on=["sector", "company_id"],
-            suffixes=["", "_sector_total"],
+            suffixes=("", "_sector_total"),
         )
         df_combined["norm"] = df_combined["production_sector_total"].fillna(1)
 
@@ -1879,7 +1895,7 @@ class alignmentCalculator:
         for sector, sector_settings in self._settings["sectoral_approach"].items():
             for tech in sector_settings["phase_out"] + sector_settings["other"]:
                 indexes = (data["technology"] == tech) & (data["sector"] == sector)
-                data.loc[indexes, "deviation"] = -1 * data.loc[indexes, "deviation"]
+                data.loc[indexes, "deviation"] = -1 * data.loc[indexes, "deviation"]  # type: ignore
 
         data["weighted_deviation"] = data["deviation"] * data[loan_indicator]
         results_target = (
@@ -1892,7 +1908,7 @@ class alignmentCalculator:
             how="left",
             left_on=cols,
             right_on=cols,
-            suffixes=["", "_end"],
+            suffixes=("", "_end"),
         )
         data["weighted_target"] = data["target_end"] * data[loan_indicator]
 
@@ -1972,6 +1988,8 @@ class alignmentCalculator:
             A set containing unique reference dates extracted from loan data,
             filtered based on the last two characters of the `portfolio_date` field.
         """
+        if self._loans is None:
+            raise ValueError("No loan data provided")
 
         portfolio_dates = set(
             self._loans[self._loans["portfolio_date"].astype(str).str[-2:] == "12"][
@@ -2043,7 +2061,7 @@ class alignmentCalculator:
                 self._pathway in self._scenario_data[scenario_year][self._scenario_set]
             ):
                 master_data_year = {}
-                for data_year in self._pacta_company_indicators.keys():
+                for data_year in self._climate_company_indicators.keys():
                     if (self._scenario_set in self._scenario_data[data_year]) and (
                         self._pathway
                         in self._scenario_data[data_year][self._scenario_set]
@@ -2057,8 +2075,8 @@ class alignmentCalculator:
                                 facet_col,
                                 use_region_file,
                                 data_year,
-                                scenario_year,
                                 normalise_method,
+                                scenario_year,
                             )
                 master_data[scenario_year] = master_data_year
 
@@ -2090,11 +2108,19 @@ class alignmentCalculator:
 
         results = []
         if add_total:
-            total_group = self.group_scores(
-                data, ["scenario_year", "data_year", "portfolio_date", "end_year"]
-            )
+            total_group = data.groupby(
+                ["scenario_year", "data_year", "portfolio_date", "end_year"]
+            ).sum(numeric_only=True)
             total_group[self._portfolio_id] = "total"
-            data = pd.concat([data, total_group])
+            total_group["score"] = (
+                total_group["weighted_deviation"] / total_group["weighted_target"]
+            )
+            data = pd.concat(
+                [
+                    data,
+                    total_group.drop(columns=["weighted_deviation", "weighted_target"]),
+                ]
+            )
         for portfolio_id in data[self._portfolio_id].unique():
             data_portfolio = data[data[self._portfolio_id] == portfolio_id].reset_index(
                 drop=True
@@ -2126,7 +2152,7 @@ class alignmentCalculator:
                     )
         return pd.concat(results)
 
-    def _make_time_metrics(self, data_portfolio: pd.DataFrame) -> pd.DataFrame:
+    def _make_time_metrics(self, data_portfolio: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
         """
         Calculates the decarbonisation shift, portfoliio shift and counterparty shift
         from the results calculated with the calculate_net_alignment_change_over_time
@@ -2140,9 +2166,10 @@ class alignmentCalculator:
 
         Returns
         -------
-        pd.DataFrame
+        tuple[pd.DataFrame, pd.DataFrame]
             data_portfolio with the addition of the decarbonisation_shift,
-            portfoliio_shift and counterparty_shift columns
+            portfoliio_shift and counterparty_shift columns and a dataframe with
+            the original scores
         """
 
         data_portfolio = (

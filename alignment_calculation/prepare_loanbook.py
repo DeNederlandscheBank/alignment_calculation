@@ -1,7 +1,6 @@
-from typing import Union
 import pandas as pd
 from unicodedata import normalize as unicode_norm
-from .load_pacta_data import _load_main_pacta_data
+from .load_climate_data import _load_main_climate_data
 from .read_data import _load_loan_counterparties, _load_loan_data, _add_external_data
 
 from .ac_config import alignmentCalculatorConfig
@@ -10,13 +9,13 @@ from .ac_config import alignmentCalculatorConfig
 class loanbookPreparer:
     """
     The loanbookPreparer class can construct a loanbook based on loan data, possible
-    augmented with external data and connect it to the PACTA dataset. This can yield
+    augmented with external data and connect it to the climate dataset. This can yield
     a loanbook that can directly be used in the alignment calculator.
 
     Parameters
     ----------
-    pacta_file_location: list | str, optional
-        the location of the pacta file or a list of pacta files
+    climate_file_location: list | str | None, optional
+        the location of the climate file or a list of climate files
         default = None
 
     settings: dict, optional
@@ -28,69 +27,69 @@ class loanbookPreparer:
 
     def __init__(
         self,
-        pacta_file_location: Union[list, str] = None,
-        settings: dict = None,
+        climate_file_location: list | str | None = None,
+        settings: dict | None = None,
         remove_government: bool = True,
     ):
         self._external_columns = {}
-        self._load_pacta_files(pacta_file_location, settings)
-        self._preprocess_pacta(remove_government)
+        self._load_climate_files(climate_file_location, settings)
+        self._preprocess_climate(remove_government)
 
-    def _load_pacta_files(
-        self, pacta_file_location: Union[list, str], settings: dict
+    def _load_climate_files(
+        self, climate_file_location: list | str | None, settings: dict | None
     ) -> None:
         """
-        loads the pacta data and sets it to the _pacta attribute
+        loads the climate data and sets it to the _climate attribute
 
         Parameters:
         -----------
-        pacta_file_location: list | str
-            the location of the pacta file or a list of pacta files
+        climate_file_location: list | str | None
+            the location of the climate file or a list of climate files
 
-        settings: dict
+        settings: dict | None
             the settings equivalent to the settings from the parameters.py file
             that should apply when loading the data. If None the settings
             from parameters.py will be used.
         """
 
-        pacta_files = []
-        if pacta_file_location is None:
+        climate_files = []
+        if climate_file_location is None:
             if settings is None:
-                pacta_file_names = (
+                climate_file_names = (
                     alignmentCalculatorConfig()
-                    .load_settings()["main_pacta_file"]
+                    .load_settings()["main_climate_file"]
                     .values()
                 )
             else:
-                pacta_file_names = settings["main_pacta_file"].values()
-            for pacta_file in pacta_file_names:
-                pacta_files.append(
-                    _load_main_pacta_data(pacta_file)["company_indicators"]
+                climate_file_names = settings["main_climate_file"].values()
+            for climate_file in climate_file_names:
+                climate_files.append(
+                    _load_main_climate_data(climate_file)["company_indicators"]
                 )
-        elif isinstance(pacta_file_location, list):
-            for pacta_file in pacta_file_location:
-                pacta_files.append(
-                    _load_main_pacta_data(pacta_file)["company_indicators"]
+        elif isinstance(climate_file_location, list):
+            for climate_file in climate_file_location:
+                climate_files.append(
+                    _load_main_climate_data(climate_file)["company_indicators"]
                 )
         else:
-            pacta_files = [
-                _load_main_pacta_data(pacta_file_location)["company_indicators"]
+            climate_files = [
+                _load_main_climate_data(climate_file_location)["company_indicators"]
             ]
-        self._pacta = pd.concat(pacta_files)
+        self._climate = pd.concat(climate_files)
 
     def prepare_loanbook(
         self,
         base_year: int = 2023,
         month: int = 12,
-        start_year: int = None,
-        start_month: int = None,
-        match_data: str = None,
-        portfolio_codes: list = None,
-        loanbook_filename: str = None,
-        frequency: str = "Q",
-        additional_columns: dict = None,
-        external_columns: dict = None,
-    ) -> Union[pd.DataFrame, None]:
+        start_year: int | None = None,
+        start_month: int | None = None,
+        match_data: str | None = None,
+        portfolio_codes: list | None = None,
+        loanbook_filename: str | None = None,
+        frequency: str | None = None,
+        additional_columns: dict | None = None,
+        external_columns: dict | None = None,
+    ) -> pd.DataFrame | None:
         """
         Prepares a loanbook based on loan data for a specified year and month.
 
@@ -104,25 +103,25 @@ class loanbookPreparer:
             The month for which loan data will be loaded.
             Default = 12.
 
-        start_year : int, optional
+        start_year : int|None, optional
             The year from which to start loading the loan data.
             Default = None.
 
-        start_month : int, optional
+        start_month : int|None, optional
             The month from which to start loading the loan data.
             Default = None.
 
-        match_data: str, optional
+        match_data: str|None, optional
             The location of the matched data file, containing the ids of the
-            PACTA companies (company_id) and the counterpaty ids (counterparty_id)
+            climate companies (company_id) and the counterpaty ids (counterparty_id)
             in a csv format.
             Default = None.
 
-        portfolio_codes : list, optional
+        portfolio_codes : list|None, optional
             List of portfolio codes to filter the loan data.
             Default = None.
 
-        loanbook_filename : str, optional
+        loanbook_filename : str|None, optional
             If provided, the loanbook data will be saved as a CSV file with the
             specified filename. If not provided, the loanbook DataFrame will be
             returned without saving.
@@ -133,13 +132,13 @@ class loanbookPreparer:
             - 'M': Monthly
             - 'Q': Quarterly
             - 'Y': Yearly
-            Default = Q.
+            Default = None
 
-        additional_columns: dict, optional
+        additional_columns: dict|None, optional
             Additional columns that should be loaded from the loan data.
             Default = None.
 
-        external_columns : dict, optional
+        external_columns : dict|None, optional
             The extra columns for which data should be fetched. The value relates to the
             expression that should be added to the query to get the additional data and
             the key relates to how the additional datapoint should be called.
@@ -167,33 +166,40 @@ class loanbookPreparer:
             self._external_columns = external_columns
 
         if match_data is None:
-            loan_counterparties = _load_loan_counterparties(
-                year=base_year,
-                month=month,
-                start_month=start_month,
-                start_year=start_year,
-            )
+            loan_counterparties_args = {}
+            if base_year is not None:
+                loan_counterparties_args["year"] = base_year
+            if month is not None:
+                loan_counterparties_args["month"] = month
+            if start_month is not None:
+                loan_counterparties_args["start_month"] = start_month
+            if start_year is not None:
+                loan_counterparties_args["start_year"] = start_year
+            loan_counterparties = _load_loan_counterparties(**loan_counterparties_args)
 
-            pacta_data = self._match_data(loan_counterparties)
+            climate_data = self._match_data(loan_counterparties)
         else:
             loan_counterparties = pd.read_csv(match_data)
-            pacta_data = self._simple_join(loan_counterparties)
+            climate_data = self._simple_join(loan_counterparties)
 
         if len(self._external_columns) > 0:
-            pacta_data = _add_external_data(pacta_data, self._external_columns)
-
+            climate_data = _add_external_data(climate_data, self._external_columns)
+            
+        loan_data_args = {}
+        if frequency is not None:
+            loan_data_args["frequency"] = frequency
+        if len(self._additional_columns) > 0:
+            loan_data_args["additional_columns"] = self._additional_columns
         loan_data = _load_loan_data(
-            pacta_data=pacta_data,
+            climate_data=climate_data,
             year=base_year,
             month=month,
             portfolio_codes=portfolio_codes,
             start_month=start_month,
             start_year=start_year,
-            frequency=frequency,
-            additional_columns=self._additional_columns,
+            **loan_data_args
         )
-
-        loanbook = self._merge_pacta_loan_data(pacta_data, loan_data)
+        loanbook = self._merge_climate_loan_data(climate_data, loan_data)
         loanbook = self._post_processed(loanbook)
 
         if loanbook_filename is None:
@@ -224,17 +230,17 @@ class loanbookPreparer:
 
         return data
 
-    def _merge_pacta_loan_data(
-        self, pacta_data: pd.DataFrame, loan_data: pd.DataFrame
+    def _merge_climate_loan_data(
+        self, climate_data: pd.DataFrame, loan_data: pd.DataFrame
     ) -> pd.DataFrame:
         """
-        merges the loan and PACTA datasets.
+        merges the loan and climate datasets.
 
         Parameters:
         -----------
 
-        pacta_data: pandas.DataFrame
-            The fully processed PACTA data
+        climate_data: pandas.DataFrame
+            The fully processed climate data
 
         loan_data: pandas.DataFrame
             The loan data.
@@ -242,9 +248,9 @@ class loanbookPreparer:
         Returns:
         --------
         pandas.DataFrame
-            the combined loan PACTA loanbook.
+            the combined loan climate loanbook.
         """
-        loanbook = pacta_data.merge(
+        loanbook = climate_data.merge(
             loan_data,
             how="inner",
             left_on=["counterparty_id"],
@@ -264,7 +270,7 @@ class loanbookPreparer:
             .decode()
         )
         names = names.str.lower()
-        names = names.str.replace("[^\w\s]", "", regex=True)
+        names = names.str.replace(r"[^\w\s]", "", regex=True)
         names = names.str.replace("  ", " ")
         names = names.str.replace("company", "co")
         names = names.str.replace("corporation", "corp")
@@ -272,25 +278,25 @@ class loanbookPreparer:
 
         return names
 
-    def _preprocess_pacta(self, remove_government: bool):
+    def _preprocess_climate(self, remove_government: bool):
         """
-        preprocess the pacta data by removing the the governements from the data,
+        preprocess the climate data by removing the the governements from the data,
         deduplicating the data and processing the company names.
 
         Parameters:
         -----------
 
         remove_government: bool
-            Flag whether to remove governments from the pacta data
+            Flag whether to remove governments from the climate data
         """
         if remove_government:
-            self._pacta = self._remove_cities_and_states(self._pacta)
-        self._pacta = (
-            self._pacta[["company_id", "name_company", "lei"]]
+            self._climate = self._remove_cities_and_states(self._climate)
+        self._climate = (
+            self._climate[["company_id", "name_company", "lei"]]
             .sort_values(by=["lei"], ascending=False)
             .drop_duplicates(subset=["company_id"], keep="first")
         )
-        self._pacta["processed_name"] = self._process_name(self._pacta["name_company"])
+        self._climate["processed_name"] = self._process_name(self._climate["name_company"])
 
     def _preprocessed_names(self, loan_data: pd.DataFrame):
         """
@@ -300,7 +306,7 @@ class loanbookPreparer:
         Parameters:
         -----------
         loan_data: pd.DataFrame
-            The loan data that should be merged with the pacta data
+            The loan data that should be merged with the climate data
         """
 
         loan_data["processed_name"] = self._process_name(loan_data["company_name"])
@@ -310,40 +316,40 @@ class loanbookPreparer:
 
     def _join(self, loan_data: pd.DataFrame) -> pd.DataFrame:
         """
-        joins the loan data to the pacta data, first direct on lei, second on
+        joins the loan data to the climate data, first direct on lei, second on
         parent lei, third on name, fourth on parent name
 
         Parameters:
         -----------
         loan_data: pd.DataFrame
-            The loan data that should be merged with the pacta data
+            The loan data that should be merged with the climate data
 
         Returns:
         --------
         pandas.DataFrame
-            the combined pacta loan dataframe
+            the combined climate loan dataframe
         """
 
         direct = loan_data.merge(
-            self._pacta.dropna(subset=["lei"]),
+            self._climate.dropna(subset=["lei"]),
             how="inner",
             left_on="company_lei",
             right_on="lei",
         )
         parent = loan_data.merge(
-            self._pacta.dropna(subset=["lei"]),
+            self._climate.dropna(subset=["lei"]),
             how="inner",
             left_on="parent_lei",
             right_on="lei",
         )
         direct_name = loan_data.merge(
-            self._pacta,
+            self._climate,
             how="inner",
             left_on="processed_name",
             right_on="processed_name",
         )
         parent_name = loan_data.merge(
-            self._pacta,
+            self._climate,
             how="inner",
             left_on="processed_parent_name",
             right_on="processed_name",
@@ -357,14 +363,14 @@ class loanbookPreparer:
 
     def _postprocess_join(self, combined: pd.DataFrame) -> pd.DataFrame:
         """
-        Postprocess the data after the PACTA data has been joined with the
+        Postprocess the data after the climate data has been joined with the
         counterparty id data.
 
         Parameters:
         -----------
 
         combined: pandas.DataFrame
-            The combined counterparty - PACTA dataset
+            The combined counterparty - climate dataset
 
         Returns:
         --------
@@ -372,7 +378,7 @@ class loanbookPreparer:
             The dataset, without duplicates and with the columns name_company,
             company_country, company_lei, parent_name, parent_lei add if they did not exist
         """
-
+        print(combined)
         group_columns = [
             "company_name",
             "name_company",
@@ -396,23 +402,23 @@ class loanbookPreparer:
 
     def _simple_join(self, matching_ids: pd.DataFrame) -> pd.DataFrame:
         """
-        Join a matching table to the PACTA data
+        Join a matching table to the climate data
 
         Parameters:
         -----------
 
         matching_ids: pandas.DataFrame
-            A pandas dataframe with at least two columns, a column with the PACTA ids,
-            company_id, and with the counterparty ids from a loanbook, counterparty_id.
+            A pandas dataframe with at least two columns, a column with the climate_data_id,
+            company_id, and with the counterparty_id from a loanbook, counterparty_id.
 
         Returns:
         --------
         pandas.DataFrame
-            The PACTA dataset with counterparty ids added to the data and the name_company,
+            The climate dataset with counterparty ids added to the data and the name_company,
             company_country, company_lei, parent_name, parent_lei columns if they did not exist
         """
 
-        combined = self._pacta.merge(
+        combined = self._climate.merge(
             matching_ids, how="inner", left_on=["company_id"], right_on=["company_id"]
         )
         combined = self._postprocess_join(combined)
@@ -427,7 +433,7 @@ class loanbookPreparer:
         -----------
 
         combined: pandas.DataFrame
-            The combined PACTA-loan dataframe
+            The combined climate-loan dataframe
 
         Returns:
         --------
@@ -466,12 +472,12 @@ class loanbookPreparer:
 
     def _match_data(self, loan_data: pd.DataFrame) -> pd.DataFrame:
         """
-        Performs the steps to match the loan data to the PACTA data.
+        Performs the steps to match the loan data to the climate data.
 
         Parameters:
         -----------
         loan_data: pd.DataFrame
-            The loan data that should be merged with the pacta data
+            The loan data that should be merged with the climate data
 
         Returns:
         --------

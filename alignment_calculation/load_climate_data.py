@@ -31,7 +31,7 @@ def _load_scenario_data(scenario_data: dict, allow_mismatches: bool = True) -> d
     Parameters
     ----------
     scenario_data : dict
-        the scenario_data from the PACTA_SETTINGS as defined in parameters.py
+        the scenario_data from the CLIMATE_SETTINGS as defined in parameters.py
     allow_mismatches : bool
         Flag indicating whether to allow scenarios to be formed based on different decarbonisation
         pathways if the sda data is missing for certain sectors
@@ -153,7 +153,7 @@ def _load_region_data(scenario_data: dict) -> dict:
     Parameters
     ----------
     scenario_data : dict
-        the scenario_data from the PACTA_SETTINGS as defined in parameters.py
+        the scenario_data from the CLIMATE_SETTINGS as defined in parameters.py
 
     Returns
     -------
@@ -168,37 +168,38 @@ def _load_region_data(scenario_data: dict) -> dict:
     return regions
 
 
-def _load_loanbook_data(loan_file: str) -> pd.DataFrame:
+def _load_loanbook_data(loan_file: str|None) -> pd.DataFrame| None:
     """
     Load and process the loanbook data
 
     Parameters
     ----------
-    loan_file : str
+    loan_file : str |None
         the path to the loan file in csv format
 
     Returns
     -------
-    pandas.DataFrame
-        A dataframe containing the loan files as readin from the csv
+    pandas.DataFrame| None
+        A dataframe containing the loan files as readin from the csv or
+        None if the loan_file is None
     """
     if loan_file is None:
-        loans = None
+        return None
     else:
         loans = _harmonise_column_names(pd.read_csv(loan_file, index_col=0))
 
     return loans
 
 
-def _preprocess_indicators(pacta_data: pd.DataFrame, settings: dict) -> pd.DataFrame:
+def _preprocess_indicators(climate_data: pd.DataFrame, settings: dict) -> pd.DataFrame:
     """
-    excludes the inactive sectors from the pacta_data
+    excludes the inactive sectors from the climate_data
 
     Parameters:
     -----------
-    pacta_data: pd.DataFrame
-        the pacta company_indicators data as read in by the
-        _load_main_pacta_data function.
+    climate_data: pd.DataFrame
+        the climate company_indicators data as read in by the
+        _load_main_climate_data function.
 
     settings: dict
         the settings equivalent to the settings from the parameters.py file
@@ -216,33 +217,33 @@ def _preprocess_indicators(pacta_data: pd.DataFrame, settings: dict) -> pd.DataF
         if settings["active"]:
             sectors.append(sector)
 
-    return pacta_data[pacta_data["sector"].isin(sectors)].copy()
+    return climate_data[climate_data["sector"].isin(sectors)].copy()
 
 
-def _load_main_pacta_data(
-    main_pacta_file: Union[list, str],
-    indicator_sheet: str = "Company Indicators - PACTA Comp",
+def _load_main_climate_data(
+    main_climate_file: Union[list, str],
+    indicator_sheet: str = "Company Indicators - climate Comp",
     ownership_sheet: str = "Company Ownership",
-    settings: dict = None,
+    settings: dict|None = None,
 ) -> dict:
     """
-    reads in the main pacta data
+    reads in the main climate data
 
     Parameters:
     -----------
-    main_pacta_file: list | str
-        the name of the pacta file or a list of pacta files, in case
+    main_climate_file: list | str
+        the name of the climate file or a list of climate files, in case
         the data is split into multiple files
 
     indicator_sheet: str, optional
         the name of the sheet company indicators that should be loaded
-        default = 'Company Indicators - PACTA Comp'
+        default = 'Company Indicators - climate Comp'
 
     ownership_sheet: str, optional
         the name of the ownership sheet that should be loaded
         default = 'Company Ownership'
 
-    settings: dict, optional
+    settings: dict|None, optional
         the settings equivalent to the settings from the parameters.py file
         that should apply when loading the data. If None the settings
         from parameters.py will be used.
@@ -257,8 +258,8 @@ def _load_main_pacta_data(
     if settings is None:
         settings = alignmentCalculatorConfig().load_settings()
 
-    if isinstance(main_pacta_file, str):
-        with pd.ExcelFile(main_pacta_file, engine="openpyxl") as xls:
+    if isinstance(main_climate_file, str):
+        with pd.ExcelFile(main_climate_file, engine="openpyxl") as xls:
             result = {
                 "company_indicators": _harmonise_column_names(
                     _preprocess_indicators(
@@ -270,14 +271,14 @@ def _load_main_pacta_data(
                 ),
             }
 
-    elif isinstance(main_pacta_file, list):
-        if ".csv" in main_pacta_file[0]:
+    elif isinstance(main_climate_file, list):
+        if ".csv" in main_climate_file[0]:
             result = {
                 "company_indicators": _harmonise_column_names(
-                    _preprocess_indicators(pd.read_csv(main_pacta_file[0]), settings)
+                    _preprocess_indicators(pd.read_csv(main_climate_file[0]), settings)
                 ),
                 "company_ownership": _harmonise_column_names(
-                    pd.read_csv(main_pacta_file[1])
+                    pd.read_csv(main_climate_file[1])
                 ),
             }
         else:
@@ -285,13 +286,13 @@ def _load_main_pacta_data(
                 "company_indicators": _harmonise_column_names(
                     _preprocess_indicators(
                         pd.read_excel(
-                            main_pacta_file[0], sheet_name="Company PACTA Dataset - EO"
+                            main_climate_file[0], sheet_name="Company climate Dataset - EO"
                         ),
                         settings,
                     )
                 ),
                 "company_ownership": _harmonise_column_names(
-                    pd.read_excel(main_pacta_file[1], sheet_name="Company Ownership")
+                    pd.read_excel(main_climate_file[1], sheet_name="Company Ownership")
                 ),
             }
     else:

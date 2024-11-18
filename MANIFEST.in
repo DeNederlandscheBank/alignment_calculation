@@ -1,1 +1,2 @@
-include data/scenario_data/*.csv
+recursive-include alignment_calculation/data *
+include alignment_calculation/parameters.yaml
