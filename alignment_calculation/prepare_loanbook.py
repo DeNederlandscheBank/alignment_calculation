@@ -378,7 +378,6 @@ class loanbookPreparer:
             The dataset, without duplicates and with the columns name_company,
             company_country, company_lei, parent_name, parent_lei add if they did not exist
         """
-        print(combined)
         group_columns = [
             "company_name",
             "name_company",
