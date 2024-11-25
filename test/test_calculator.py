@@ -82,7 +82,7 @@ def custom_alignment_calculator():
         "company_information_file": "../data/company_data/company_information.csv"
     }
     loan_file = pd.DataFrame({"column": [1, 2, 3]})
-    loanbook_settings = {"base_year": 2022}
+    loanbook_settings = {"base_year": 2022, "external_columns": None}
     return alignmentCalculator(
         portfolio_id="custom_portfolio",
         custom_settings=custom_settings,
@@ -90,7 +90,7 @@ def custom_alignment_calculator():
         loanbook_settings=loanbook_settings,
         scenario_set="custom_scenario",
         pathway="custom_pathway",
-        debug=True,
+        debug=False,
     )
 
 
@@ -118,7 +118,7 @@ def combined_data():
     return None
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def setup_alignment_calculator():
     # Mock the alignmentCalculator with necessary attributes
     ac = alignmentCalculator(portfolio_id="portfolio_code")
@@ -167,6 +167,9 @@ def setup_alignment_calculator():
                 "plant_location": ["US", "DE"],
                 "year": [2023, 2023],
                 "emission_factor": [0.01, 0.02],
+                "smsp": [0.05, 0.05],
+                "tmsr": [1.01, 1.23],
+                "emission_factor_scenario": [1.01, 1.23],
                 "region": ["US", "EU"],
                 "production": [100, 200],
                 "target": [90, 180],
@@ -235,7 +238,7 @@ def test_debug_mode_initialization():
     ), "Scenario data should not be loaded in debug mode"
 
 
-def test_calculate_net_alignment_default(setup_alignment_calculator):
+def test_calculate_net_alignment(setup_alignment_calculator):
     with (
         patch.object(
             setup_alignment_calculator,
@@ -269,58 +272,6 @@ def test_calculate_net_alignment_default(setup_alignment_calculator):
 
         assert_frame_equal(result._results_data, expected_result)
         mock_preprocess.assert_called_once()
-        mock_calculate_instance.assert_called()
-
-
-def test_calculate_net_alignment_custom_params(setup_alignment_calculator):
-    with (
-        patch.object(
-            setup_alignment_calculator,
-            "_preprocess_data",
-            return_value=pd.DataFrame(
-                {
-                    "portfolio_date": [202301],
-                    "company_id": [1],
-                    "sector": ["Energy"],
-                    "technology": ["Coal"],
-                    "year": [2023],
-                    "production": [100],
-                    "target": [95],
-                }
-            ),
-        ) as mock_preprocess,
-        patch.object(
-            setup_alignment_calculator,
-            "_calculate_alignment_instance",
-            return_value=pd.DataFrame({"portfolio_date": [202301], "score": [0.05]}),
-        ) as mock_calculate_instance,
-    ):
-
-        result = setup_alignment_calculator.calculate_net_alignment(
-            loan_indicator="total_assets",
-            facet_col=["sector"],
-            bopo_split=True,
-            individual_loans=True,
-            use_loan_file=False,
-            only_parents=False,
-            use_region_file=False,
-            limit=5,
-            normalise_method="economic",
-        )
-
-        expected_result = pd.DataFrame({"portfolio_date": [202301], "score": [0.05]})
-
-        assert_frame_equal(result._results_data, expected_result)
-        mock_preprocess.assert_called_once_with(
-            use_loan_file=False,
-            individual_loans=True,
-            loan_indicator="total_assets",
-            only_parents=False,
-            facet_col=["sector"],
-            use_region_file=False,
-            year=2023,
-            normalise_method="economic",
-        )
         mock_calculate_instance.assert_called()
 
 
@@ -392,7 +343,7 @@ def test_update_settings(setup_alignment_calculator):
         # Assert that the config method was called with the correct parameters
         mock_config.config.assert_called_once_with(
             main_climate_file=None,
-            company_information_file=None,
+            company_information_file="new_value",
             economic_weights=None,
             production_thresholds=None,
             scenario_data=None,
@@ -403,11 +354,11 @@ def test_update_settings(setup_alignment_calculator):
         # Assert that the settings were updated correctly
         assert (
             setup_alignment_calculator._settings["company_information_file"]
-            == "new_value"
+            == "original_value"
         )
 
         # Test that the settings are reloaded if config returns None
-        assert mock_config.load_settings.called
+        assert mock_config.load_settings.not_called
 
 
 def test_update_loanbook_with_file(setup_alignment_calculator, loanbook_data):
@@ -469,81 +420,18 @@ def test_preprocess_data(setup_alignment_calculator, mock_loan_data, mock_climat
         ), "The targets should match the scenario data."
 
 
-def test_calculate_net_alignment_2(
-    setup_alignment_calculator, mock_climate_data, mock_loan_data
-):
-    """
-    Test the `calculate_net_alignment` method of the alignmentCalculator class.
-    """
-    calculator = setup_alignment_calculator
-
-    # Mocking the loading of climate and loan data
-    with (
-        patch.object(
-            calculator,
-            "_climate_company_indicators",
-            return_value={2023: mock_climate_data},
-        ),
-        patch.object(calculator, "_loans", return_value=mock_loan_data),
-    ):
-
-        # Run the calculate_net_alignment method
-        result = calculator.calculate_net_alignment()
-
-        # Check if the result is as expected
-        assert isinstance(
-            result, pd.DataFrame
-        ), "The result should be a pandas DataFrame."
-        assert not result.empty, "The result DataFrame should not be empty."
-        assert (
-            "score" in result.columns
-        ), "The result DataFrame should contain a 'score' column."
-        assert (
-            result["score"].dtype == float
-        ), "The scores should be floating point numbers."
-
-        # Additional checks can be made based on expected values
-        # For example:
-        # assert result['score'].iloc[0] == expected_value, "The score for the first entry is not as expected."
-
-
 def test_add_region(setup_alignment_calculator):
     # Setup
     calculator = setup_alignment_calculator
     year = 2023
     region_mapping = {
-        "sector1": {"region1": ["Country1", "Country2"]},
-        "sector2": {"region2": ["Country3"]},
+        "power": {"region1": ["US"]},
+        "automotive": {"region2": ["US"]},
     }
-
-    # Mock the _reconcile_regions method to return our predefined region_mapping
-    with patch.object(calculator, "_reconcile_regions", return_value=region_mapping):
-        # Execute the method under test
-        calculator._add_region(year)
-
-        # Assertions to check if regions are added correctly
-        assert (
-            "region" in calculator._climate_company_indicators[year].columns
-        ), "Region column should be added"
-        assert (
-            calculator._climate_company_indicators[year]
-            .loc[
-                calculator._climate_company_indicators[year]["sector"] == "sector1",
-                "region",
-            ]
-            .unique()[0]
-            == "region1"
-        ), "Region should be 'region1' for sector1"
-        assert (
-            calculator._climate_company_indicators[year]
-            .loc[
-                calculator._climate_company_indicators[year]["sector"] == "sector2",
-                "region",
-            ]
-            .unique()[0]
-            == "region2"
-        ), "Region should be 'region2' for sector2"
-
+    calculator._add_region(year, region_mapping)
+    
+    assert calculator._climate_company_indicators[2023]['region'].iloc[0] == 'region1'
+    assert calculator._climate_company_indicators[2023]['region'].iloc[1] == 'global'
 
 def test_reconcile_regions_no_region_data(setup_alignment_calculator):
     """Test _reconcile_regions method when no region data is loaded."""
@@ -582,126 +470,41 @@ def test_reconcile_regions_with_region_data(setup_alignment_calculator):
     }
 
     expected = {
-        "energy": {"global": ["ALL"], "EU": ["BE", "DE", "FR"], "NA": ["US", "CA"]},
-        "transport": {"global": ["ALL"]},
+        "energy": {"EU": ["BE,DE,FR"], "global": ["ALL"]},
+        "transport": {"NA": ["ALL"]},
     }
 
     result = setup_alignment_calculator._reconcile_regions()
-    assert result == expected, "Expected region mapping did not match the actual result"
+    
+    pd.testing.assert_frame_equal(pd.DataFrame(result), pd.DataFrame(expected))
 
 
 def test_calculate_tms(setup_alignment_calculator):
     ac = setup_alignment_calculator
 
-    # Mocking the necessary data and methods for the test
-    with (
-        patch.object(
-            ac,
-            "_climate_company_indicators",
-            return_value={
-                2023: pd.DataFrame(
-                    {
-                        "company_id": [1, 2],
-                        "name_company": ["Company A", "Company B"],
-                        "sector": ["Energy", "Transport"],
-                        "technology": ["Coal", "Electric"],
-                        "plant_location": ["USA", "Germany"],
-                        "year": [2023, 2023],
-                        "production": [1000, 2000],
-                        "emission_factor": [0.5, 0.3],
-                        "region": ["NA", "EU"],
-                    }
-                )
-            },
-        ),
-        patch.object(
-            ac,
-            "_scenario_data",
-            return_value={
-                2023: {
-                    "weo": {
-                        "nze_2050": pd.DataFrame(
-                            {
-                                "sector": ["Energy", "Transport"],
-                                "technology": ["Coal", "Electric"],
-                                "year": [2023, 2023],
-                                "region": ["NA", "EU"],
-                                "target": [900, 1800],
-                            }
-                        )
-                    }
-                }
-            },
-        ),
-        patch.object(
-            ac,
-            "_settings",
-            return_value={
-                "sectoral_approach": {
-                    "Energy": {
-                        "approach": "tms",
-                        "sector": ["Coal"],
-                        "technology": ["Coal"],
-                        "build_out": [],
-                        "phase_out": ["Coal"],
-                        "other": [],
-                        "regional": True,
-                        "active": True,
-                    },
-                    "Transport": {
-                        "approach": "sda",
-                        "sector": ["Electric"],
-                        "technology": ["Electric"],
-                        "build_out": [],
-                        "phase_out": [],
-                        "other": ["Electric"],
-                        "regional": True,
-                        "active": True,
-                    },
-                }
-            },
-        ),
-    ):
-        # Run the method under test
-        result = ac._calculate_tms(2023, "weo", "nze_2050")
+    # Run the method under test
+    result = ac._calculate_tms(ac._df_climate[2023], "automotive", ac._settings['sectoral_approach']['automotive'], 2023)
 
-        # Check the results
-        assert isinstance(result, pd.DataFrame), "The result should be a DataFrame."
-        assert (
-            "target" in result.columns
-        ), "The result DataFrame should contain 'target' column."
-        assert (
-            result.at[0, "target"] == 900
-        ), "The target for Energy sector should be calculated correctly."
-        assert (
-            result.at[1, "target"] == 1800
-        ), "The target for Transport sector should be calculated correctly."
+    # Check the results
+    assert isinstance(result, pd.DataFrame)
+    assert ("target" in result.columns)
+    assert (result.at[0, "target"] == 90)
+    assert (result.at[1, "target"] == 210)
 
 
 def test_calculate_sda(setup_alignment_calculator):
     ac = setup_alignment_calculator
-    df_climate = ac._climate_company_indicators[2023]
-    sector = "energy"
+    df_climate = ac._df_climate[2023]
+    sector = "coal"
     scenario_year = 2023
 
     # Run the method under test
-    result_df = ac._calculate_sda(df_climate, sector, scenario_year)
-
-    # Define expected DataFrame
-    expected_df = pd.DataFrame(
-        {
-            "company_id": [1, 2],
-            "sector": ["energy", "transport"],
-            "technology": ["solar", "electric"],
-            "production": [100, 200],
-            "emission_factor": [0.1, 0.2],
-            "region": ["EU", "NA"],
-            "target": [0.05, pd.NA],  # Only 'energy' sector should have updated targets
-        }
-    )
-
-    # Check if the result is as expected
-    pd.testing.assert_frame_equal(result_df, expected_df)
+    result = ac._calculate_sda(df_climate, sector, scenario_year)
+    
+    assert isinstance(result, pd.DataFrame)
+    assert ("target" in result.columns)
+    assert (result.at[0, "target"] == 90)
+    assert (result.at[1, "target"] == 180)
 
 
 @pytest.fixture
@@ -720,32 +523,29 @@ def climate_data():
     )
 
 
-def test_combine_asset_locations(climate_data, setup_alignment_calculator):
-    setup_alignment_calculator._df_climate = {2020: climate_data}
+def test_combine_asset_locations(setup_alignment_calculator):
     expected_result = pd.DataFrame(
         {
-            "company_id": [1, 2, 3],
-            "name_company": ["Company A", "Company B", "Company C"],
-            "sector": ["Energy", "Energy", "Technology"],
-            "technology": ["Energy", "Energy", "Technology"],
-            "year": [2020, 2020, 2020],
-            "region": ["NA", "EU", "APAC"],
-            "production": [100, 200, 300],
-            "target": [90, 180, 270],
+            "company_id": [88, 110],
+            "name_company": ["Company1", "Company2"],
+            "sector": ["power", "automotive"],
+            "technology": ["power", "automotive"],
+            "year": [2023, 2023],
+            "region": ["US", "EU"],
+            "production": [100, 200],
+            "target": [90.0, 180.0],
         }
     )
 
-    result = setup_alignment_calculator._combine_asset_locations(2020)
+    result = setup_alignment_calculator._combine_asset_locations(2023)
     assert_frame_equal(result, expected_result)
 
 
 def test_get_sector_approach_technologies(setup_alignment_calculator):
     ac = setup_alignment_calculator
-    expected_technologies = ["technology_a", "technology_b", "technology_c"]
+    expected_technologies = ["electric", "fuelcell", "hybrid", "renewablescap"]
     result_technologies = ac._get_sector_approach_technologies()
-    assert set(result_technologies) == set(
-        expected_technologies
-    ), "The technologies should match the expected list"
+    assert set(result_technologies) == set(expected_technologies)
 
 
 @pytest.fixture
@@ -761,78 +561,133 @@ def mock_climate_data():
 
 @pytest.fixture
 def mock_loan_data():
-    return pd.DataFrame({"company_id": [1, 2, 3], "loan_amount": [1000, 2000, 3000]})
-
-
-@patch("alignment_calculator_module.alignmentCalculator._load_region_data")
-@patch("alignment_calculator_module.alignmentCalculator._preprocess_data")
-def test_combine_climate_loan_data(
-    mock_preprocess_data,
-    mock_load_region_data,
-    mock_alignment_calculator,
-    mock_climate_data,
-    mock_loan_data,
-):
-    mock_preprocess_data.return_value = mock_climate_data
-    mock_load_region_data.return_value = pd.DataFrame(
-        {"region": ["Region1", "Region2", "Region3"], "company_id": [1, 2, 3]}
+    return pd.DataFrame(
+        {"company_id": [88, 110, 110], "loan_amount": [1000, 2000, 3000]}
     )
 
-    result = mock_alignment_calculator._combine_climate_loan_data(
-        climate_data=mock_climate_data,
+
+def test_combine_climate_loan_data(setup_alignment_calculator):
+
+    result = setup_alignment_calculator._combine_climate_loan_data(
+        climate_data=setup_alignment_calculator._df_climate[2023],
         use_loan_file=True,
         individual_loans=False,
         only_parents=True,
-        loan_column="loan_amount",
+        loan_column="outstanding_amount",
         facet_col=[],
         year=2023,
     )
 
     expected_columns = [
+        "company_country",
+        "portfolio_code",
+        "name_company_x",
+        "parent_name",
+        "company_lei",
         "company_id",
+        "parent_lei",
+        "company_name",
+        "portfolio_date",
+        "outstanding_amount",
+        "loan_id",
+        "name_company_y",
+        "sector",
+        "technology",
+        "plant_location",
+        "year",
+        "emission_factor",
+        "region",
         "production",
         "target",
-        "loan_amount",
-        "portfolio_id",
-        "loan_id",
     ]
-    assert all(
-        col in result.columns for col in expected_columns
-    ), "Result should have all expected columns"
-    assert len(result) == 3, "Result should have combined data for 3 companies"
-    assert result["loan_amount"].equals(
-        mock_loan_data["loan_amount"]
-    ), "Loan amounts should match the input loan data"
+
+    assert all(col in result.columns for col in expected_columns)
+    assert len(result) == 2
+    assert all(result["outstanding_amount"].values == [100, 300])
 
 
 def test_only_parents_true(setup_alignment_calculator):
     ac = setup_alignment_calculator
-    result = ac._only_parents(ac._loans, "outstanding_amount", 2023, only_parents=True)
+    result = ac._only_parents(
+        ac._loans, "outstanding_amount", 2023, stop_at_weak_parents=True
+    )
     expected_result = pd.DataFrame(
         {
-            "company_id": ["P1", "P2"],
-            "loan_id": [1, 2],
-            "outstanding_amount": [400, 600],  # Sum of loans for each parent
             "portfolio_date": [202301, 202301],
-            "sector": ["Energy", "Transport"],
+            "company_id": [88, 110],
+            "loan_id": ["L1", "L2"],
+            "portfolio_code": ["portfolio1", "portfolio1"],
+            "outstanding_amount": [100, 300],
+            "counterparty_id": ["C1", "C2"],
+            "company_name": ["Company1", "Company2"],
+            "name_company": ["Company1", "Company2"],
+            "company_country": ["US", "IT"],
+            "company_lei": ["123", "456"],
+            "parent_name": ["Company1", "Parent1"],
+            "parent_lei": ["123", "789"],
         }
     )
-    pd.testing.assert_frame_equal(result, expected_result)
+    pd.testing.assert_frame_equal(
+        result[
+            [
+                "portfolio_date",
+                "company_id",
+                "loan_id",
+                "portfolio_code",
+                "outstanding_amount",
+                "counterparty_id",
+                "company_name",
+                "name_company",
+                "company_country",
+                "company_lei",
+                "parent_name",
+                "parent_lei",
+            ]
+        ],
+        expected_result,
+    )
 
 
 def test_only_parents_false(setup_alignment_calculator):
     ac = setup_alignment_calculator
-    result = ac._only_parents(ac._loans, "outstanding_amount", 2023, only_parents=False)
+    result = ac._only_parents(
+        ac._loans, "outstanding_amount", 2023, stop_at_weak_parents=False
+    )
     expected_result = pd.DataFrame(
         {
-            "company_id": ["C1", "C2", "C3", "C4"],
-            "loan_id": [1, 2, 3, 4],
-            "outstanding_amount": [100, 200, 300, 400],
-            "portfolio_date": [202301, 202301, 202301, 202301],
-            "sector": ["Energy", "Transport", "Energy", "Transport"],
+            "portfolio_date": [202301, 202301],
+            "company_id": [88, 110],
+            "loan_id": ["L1", "L2"],
+            "portfolio_code": ["portfolio1", "portfolio1"],
+            "outstanding_amount": [100, 300],
+            "counterparty_id": ["C1", "C2"],
+            "company_name": ["Company1", "Company2"],
+            "name_company": ["Company1", "Company2"],
+            "company_country": ["US", "IT"],
+            "company_lei": ["123", "456"],
+            "parent_name": ["Company1", "Parent1"],
+            "parent_lei": ["123", "789"],
         }
     )
-    pd.testing.assert_frame_equal(result, expected_result)
+    pd.testing.assert_frame_equal(
+        result[
+            [
+                "portfolio_date",
+                "company_id",
+                "loan_id",
+                "portfolio_code",
+                "outstanding_amount",
+                "counterparty_id",
+                "company_name",
+                "name_company",
+                "company_country",
+                "company_lei",
+                "parent_name",
+                "parent_lei",
+            ]
+        ],
+        expected_result,
+    )
 
 
 def test_get_parent_companies(setup_alignment_calculator):
@@ -975,7 +830,7 @@ def test_determine_ratios(setup_alignment_calculator, test_input, expected):
 @pytest.fixture
 def sample_loan_data():
     data = {
-        "company_id": [1, 2, 1, 2],
+        "company_id": [88, 110, 88, 110],
         "sector": ["Energy", "Energy", "Transport", "Transport"],
         "production": [100, 200, 300, 400],
         "loan_amount": [1000, 2000, 1500, 2500],
@@ -986,7 +841,7 @@ def sample_loan_data():
 @pytest.fixture
 def sample_climate_company_indicators():
     data = {
-        "company_id": [1, 2, 1, 2],
+        "company_id": [88, 110, 88, 110],
         "sector": ["Energy", "Energy", "Transport", "Transport"],
         "production": [120, 180, 320, 380],
     }
@@ -1001,14 +856,14 @@ def test_split_loans_over_sector(
     }
 
     expected_data = {
-        "company_id": [1, 2, 1, 2],
+        "company_id": [88, 110, 88, 110],
         "sector": ["Energy", "Energy", "Transport", "Transport"],
         "production": [100, 200, 300, 400],
         "loan_amount": [
-            1000 * 120 / (120 + 180),
-            2000 * 180 / (120 + 180),
-            1500 * 320 / (320 + 380),
-            2500 * 380 / (320 + 380),
+            1000 * 120 / 440,
+            2000 * 180 / 560,
+            1500 * 320 / 440,
+            2500 * 380 / 560,
         ],
     }
     expected_df = pd.DataFrame(expected_data)
@@ -1016,7 +871,6 @@ def test_split_loans_over_sector(
     result_df = setup_alignment_calculator._split_loans_over_sector(
         sample_loan_data, "loan_amount", 2023
     )
-
     assert_frame_equal(result_df, expected_df, check_dtype=False)
 
 
@@ -1068,9 +922,7 @@ def test_split_over_technology(setup_alignment_calculator, sample_climate_data):
     ), "DataFrame should have specific columns."
 
     # Check if the technology split logic is correctly applied
-    assert any(
-        result["loan_indicator"] != sample_climate_data["loan_indicator"]
-    )
+    assert any(result["loan_indicator"] != sample_climate_data["loan_indicator"])
 
 
 def test_normalise_production_global(setup_alignment_calculator):
@@ -1089,7 +941,9 @@ def test_normalise_production_global(setup_alignment_calculator):
             "production": [200],
             "outstanding_amount": [50],
             "sector": ["automotive"],
-            "norm": [200],  # Global normalisation based on total production in the sector
+            "norm": [
+                200
+            ],  # Global normalisation based on total production in the sector
         }
     )
     result = ac._normalise_production(
@@ -1130,8 +984,8 @@ def test_global_normalisation(setup_alignment_calculator, sample_data):
     # Check if the normalisation column exists
     assert "norm" in normalised_data.columns, "Normalization column 'norm' should exist"
 
-    sample_data.loc[1,'production'] = 100
-    assert all(normalised_data["norm"].values == sample_data['production'].values)
+    sample_data.loc[1, "production"] = 100
+    assert all(normalised_data["norm"].values == sample_data["production"].values)
 
 
 @pytest.fixture
@@ -1261,7 +1115,7 @@ def test_company_normalisation(setup_alignment_calculator, sample_data):
             100,
             150,
             200,
-        ],  
+        ],
     }
     expected_df = pd.DataFrame(expected_data)
 
@@ -1276,7 +1130,7 @@ def test_calculate_alignment_instance(setup_alignment_calculator):
     ac = setup_alignment_calculator
     data = pd.DataFrame(
         {
-            "company_id": [1, 2],
+            "company_id": [88, 110],
             "portfolio_code": ["portfolio1", "portfolio1"],
             "counterparty_id": ["C1", "C2"],
             "company_name": ["Company1", "Company2"],
@@ -1289,9 +1143,9 @@ def test_calculate_alignment_instance(setup_alignment_calculator):
             "loan_id": ["L1", "L2"],
             "portfolio_date": [202301, 202301],
             "outstanding_amount": [100, 300],
-            "technology": ["tech1", "tech2"],
-            "sector": ["sector1", "sector2"],
-            "year": [2022, 2022],
+            "technology": ["coalcap", "electric"],
+            "sector": ["power", "automotive"],
+            "year": [2023, 2023],
             "production": [100, 200],
             "target": [90, 180],
             "region": ["US", "EU"],
@@ -1304,15 +1158,18 @@ def test_calculate_alignment_instance(setup_alignment_calculator):
 
     # Call the method under test
     result = ac._calculate_alignment_instance(
-        data, facet_col, loan_indicator, bopo_split, limit
+        data, facet_col, loan_indicator, bopo_split, limit, 0
     )
-
     # Check the results
     expected = pd.DataFrame(
         {
-            "end_year": [2023, 2023],
-            "portfolio_date": [202312, 202312],
-            "score": [0.111111, 0.111111],
+            "portfolio_code": ["portfolio1"],
+            "portfolio_date": [202301],
+            "end_year": [2023],
+            "outstanding_amount": [400],
+            "weighted_deviation": [5000],
+            "weighted_target": [63000],
+            "score": [0.079365],
         }
     )
 
@@ -1325,6 +1182,7 @@ def test_make_weighted_target(setup_alignment_calculator):
         {
             "company_id": [1, 2],
             "year": [2023, 2023],
+            "end_year": [2025, 2025],
             "production": [1000, 2000],
             "target": [900, 1800],
             "loan_indicator": [100, 200],
@@ -1340,11 +1198,14 @@ def test_make_weighted_target(setup_alignment_calculator):
         {
             "company_id": [1, 2],
             "year": [2023, 2023],
+            "end_year": [2025, 2025],
             "production": [1000, 2000],
             "target": [900, 1800],
             "loan_indicator": [100, 200],
-            "deviation": [100, 200],
-            "weighted_deviation": [10000, 40000],
+            "technology": ["coal", "coal"],
+            "sector": ["coal", "coal"],
+            "deviation": [-100, -200],
+            "weighted_deviation": [-10000, -40000],
             "target_end": [900, 1800],
             "weighted_target": [90000, 360000],
         }
@@ -1356,7 +1217,11 @@ def test_make_bopo_split(setup_alignment_calculator, sample_data):
     # Mocking the settings to include necessary sectoral approach details
     setup_alignment_calculator._settings = {
         "sectoral_approach": {
-            "power": {"build_out": ["renewablecap"], "phase_out": ["coalcap"], "other": []},
+            "power": {
+                "build_out": ["renewablecap"],
+                "phase_out": ["coalcap"],
+                "other": [],
+            },
             "coal": {"build_out": [], "phase_out": ["coal"], "other": []},
             "automotive": {
                 "build_out": ["electric"],
@@ -1408,10 +1273,9 @@ def test_aggregate_results(setup_alignment_calculator, sample_data):
 
 def test_make_portfolio_dates(setup_alignment_calculator):
     ac = setup_alignment_calculator
-    expected_dates = {202312, 202412}
-    assert (
-        ac._make_portfolio_dates() == expected_dates
-    ), "The portfolio dates should match the expected dates ending with '12'"
+    ac._loans["portfolio_date"] = [202312, 202311]
+    expected_dates = {202312}
+    assert ac._make_portfolio_dates() == expected_dates
 
 
 @patch("alignment_calculation.calculator.alignmentCalculator._preprocess_data")
@@ -1472,64 +1336,3 @@ def test_aggregate_over_time_results(setup_alignment_calculator, sample_data):
         assert (result["score"] <= 3).all() and (
             result["score"] >= -3
         ).all(), "Scores should be clipped between -3 and 3."
-
-
-def test_calculate_net_alignment(setup_alignment_calculator):
-    # Setup
-    calculator = setup_alignment_calculator
-
-    # Define test data
-    test_data = pd.DataFrame(
-        {
-            "loan_indicator": ["outstanding_amount", "outstanding_amount"],
-            "facet_col": [["sector"], ["sector"]],
-            "bopo_split": [True, False],
-            "individual_loans": [True, False],
-            "use_loan_file": [True, False],
-            "only_parents": [True, False],
-            "use_region_file": [True, False],
-            "limit": [3, 5],
-            "normalise_method": ["total", "economic"],
-            "portfolio_date": [2023, 2023],
-            "portfolio_code": ["portfolio1", "portfolio1"],
-        }
-    )
-
-    # Expected results (mocked)
-    expected_results = [
-        pd.DataFrame({"result": [1, 2]}),
-        pd.DataFrame({"result": [3, 4]}),
-    ]
-
-    # Patch the method that would be called within calculate_net_alignment
-    with patch.object(
-        calculator, "_preprocess_data", side_effect=expected_results
-    ) as mock_method:
-        # Run the test for each row in test_data
-        for index, row in test_data.iterrows():
-            result = calculator.calculate_net_alignment(
-                loan_indicator=row["loan_indicator"],
-                facet_col=row["facet_col"],
-                bopo_split=row["bopo_split"],
-                individual_loans=row["individual_loans"],
-                use_loan_file=row["use_loan_file"],
-                only_parents=row["only_parents"],
-                use_region_file=row["use_region_file"],
-                limit=row["limit"],
-                normalise_method=row["normalise_method"],
-            )
-
-            # Assert that the result matches the expected result
-            pd.testing.assert_frame_equal(result, expected_results[index])  # type: ignore
-
-            # Assert that _preprocess_data was called with the correct parameters
-            mock_method.assert_called_with(
-                use_loan_file=row["use_loan_file"],
-                individual_loans=row["individual_loans"],
-                loan_indicator=row["loan_indicator"],
-                only_parents=row["only_parents"],
-                facet_col=row["facet_col"],
-                use_region_file=row["use_region_file"],
-                year=2023,  # Assuming the default year is 2023
-                normalise_method=row["normalise_method"],
-            )

@@ -1028,8 +1028,8 @@ class alignmentCalculator:
             Updated DataFrame with calculated target values.
         """
 
-        df_climate.loc[df_climate["sector"] == sector, "target"] = df_climate[
-            "emission_factor_scenario"
+        df_climate.loc[df_climate["sector"] == sector, "target"] = df_climate.loc[
+            df_climate["sector"] == sector, "emission_factor_scenario"
         ]
 
         return df_climate
@@ -1784,7 +1784,7 @@ class alignmentCalculator:
         loan_indicator: str = "outstanding_amount",
         bopo_split: bool = False,
         limit: int = 3,
-        horzion: int = 5,
+        horizon: int = 5,
     ) -> pd.DataFrame:
         """
         Calculate aggregated results based on input DataFrame.
@@ -1844,7 +1844,7 @@ class alignmentCalculator:
         cols = list(cols)
         results_cols = list(results_cols)
 
-        end_year = (data["portfolio_date"] / 100).astype(int).max() + horzion
+        end_year = (data["portfolio_date"] / 100).astype(int).max() + horizon
 
         year_results = data.copy()
         year_results["end_year"] = year_results["year"]
@@ -1854,7 +1854,7 @@ class alignmentCalculator:
             year_results, loan_indicator, cols, end_year
         )
         year_results["end_year"] = end_year
-
+        
         if bopo_split:
             year_results = self._make_bopo_split(year_results)
 
