@@ -51,7 +51,6 @@ def _load_loan_data(
 
     df = pd.read_csv(absolute_path)
     df["loan_id"] = df["loan_id"].astype(str)
-
     df = df.loc[df["counterparty_id"].isin(climate_data["counterparty_id"])]
     
     if single_period:

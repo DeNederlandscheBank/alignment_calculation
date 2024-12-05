@@ -1,3 +1,4 @@
+from typing import Any
 import pandas as pd
 from unicodedata import normalize as unicode_norm
 from .load_climate_data import _load_main_climate_data
@@ -89,6 +90,7 @@ class loanbookPreparer:
         frequency: str | None = None,
         additional_columns: dict | None = None,
         external_columns: dict | None = None,
+        loan_counterparties_args: dict[str,Any]|None = None,
     ) -> pd.DataFrame | None:
         """
         Prepares a loanbook based on loan data for a specified year and month.
@@ -143,6 +145,10 @@ class loanbookPreparer:
             expression that should be added to the query to get the additional data and
             the key relates to how the additional datapoint should be called.
             Default = None.
+            
+        loan_counterparties_args: dict[str,Any]|None, optional
+            The arguments for the load loan counterparties function
+            Default = None.
 
         Returns:
         --------
@@ -165,18 +171,12 @@ class loanbookPreparer:
         else:
             self._external_columns = external_columns
 
-        if match_data is None:
+        if loan_counterparties_args is None:
             loan_counterparties_args = {}
-            if base_year is not None:
-                loan_counterparties_args["year"] = base_year
-            if month is not None:
-                loan_counterparties_args["month"] = month
-            if start_month is not None:
-                loan_counterparties_args["start_month"] = start_month
-            if start_year is not None:
-                loan_counterparties_args["start_year"] = start_year
-            loan_counterparties = _load_loan_counterparties(**loan_counterparties_args)
 
+        loan_counterparties = _load_loan_counterparties(**loan_counterparties_args)
+
+        if match_data is None:
             climate_data = self._match_data(loan_counterparties)
         else:
             loan_counterparties = pd.read_csv(match_data)
@@ -199,6 +199,7 @@ class loanbookPreparer:
             start_year=start_year,
             **loan_data_args
         )
+        
         loanbook = self._merge_climate_loan_data(climate_data, loan_data)
         loanbook = self._post_processed(loanbook)
 
