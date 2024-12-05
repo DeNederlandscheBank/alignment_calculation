@@ -1,6 +1,6 @@
 # Alignment to decrabonisation pathway calculation
 
-The Alignment to decrabonisation pathway calculation package is a Python package that helps you to calculate the alignment to a decarbonisation pathway based on AnaCredit, Orbis and AssetImpact dataset. It provides functions to analyze and assess the degree of alignment of various counterparties with a specified decarbonisation pathway.
+The Alignment to decrabonisation pathway calculation package is a Python package that helps you to calculate the alignment to a decarbonisation pathway based on a loan portfolio and asset production data. It provides functions to analyze and assess the degree of alignment of various counterparties with a specified decarbonisation pathway.
 
 ## Installation
 
@@ -45,10 +45,6 @@ For a more extensive example see the notebook *perform_pacta_calculations.ipynb*
 
 All contributions are welcome. If you want to contribute please ask what features still need to be developed. If you have developed a new feature feel free to make a pull request describing the added feature.
 
-## Authors and acknowledgment
-
--   Michiel Nijhuis
--   Mattia Angeli
 
 ## License
 
