@@ -38,7 +38,7 @@ results = ac.calculate_net_alignment(facet_col=['company_id'])
 aggregated_results = ac.group_scores(results, ['jst_code'])
 ```
 
-For a more extensive example see the notebook *perform_pacta_calculations.ipynb*
+For a more extensive example see the notebook *perform_alignment_calculations.ipynb*
 
 
 ## Contributing
